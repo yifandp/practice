@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>drag</title>
+	<style>
+		body,p,h1,{
+			padding: 0;
+			margin: 0;
+		}
+		.drag{
+			width: 400px;
+			height: 260px;
+			border: 1px solid #d8d8d8;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			margin-left: -200px;
+			margin-top: -130px;
+			border-radius: 4px;
+			overflow: hidden;
+			box-shadow: 0 2px 16px rgba(7,17,27,.4);
+		}
+		.drag .drag-title{
+			height: 40px;
+			color: #303030;
+			background: #B7F5FEFF;
+			font: 14px/40px "simsun";
+			padding: 0 40px 0 10px;
+			border-bottom: 1px solid #d8d8d8;
+			cursor: move;
+			user-select: none;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-moz-user-select: none;
+			-o-user-select: none;
+			user-select: none;
+		}
+		.drag .drag-title .close{
+			position: absolute;
+			top:0;
+			right: 0;
+			text-decoration: none;
+			color: #303030;
+			font: 14px/40px "simsun";
+			padding: 0 10px;
+		}
+		.drag-content{
+			padding: 10px;
+			height: 200px;
+		}
+	</style>
+</head>
+<body>
+	<div class="drag">
+		<div class="drag-title">
+			 弹窗标题
+			<a class="close" href="javascript:;">关闭</a>
+		</div>
+		<div class="drag-content"></div>
+	</div>
+
+	<script>
+		var dragBox = document.querySelector(".drag");
+		var title = document.querySelector(".drag-title");
+		var close = document.querySelector(".close");
+		close.onclick = function(){
+			dragBox.style.display = "none";
+		}
+
+		title.onmousedown = function(e){
+			var e = e || window.event;
+			var disX,disY;
+			disX = e.pageX - dragBox.offsetLeft;
+			disY = e.pageY - dragBox.offsetTop;
+
+			document.onmousemove = function(e){
+				var e = e || window.event;
+				var oL,oT;
+
+				oL = e.pageX - disX;
+				oT = e.pageY - disY;
+
+				if(oL< 0){
+					oL = 0
+				}else if(oL> window.innerWidth - dragBox.offsetWidth){
+					oL = window.innerWidth - dragBox.offsetWidth;
+				}
+
+				if(oT< 0){
+					oT = 0
+				}else if(oT> window.innerHeight - dragBox.offsetHeight){
+					oT = window.innerHeight - dragBox.offsetHeight;
+				}
+
+				dragBox.style.margin = 0;
+				dragBox.style.left = oL + "px";
+				dragBox.style.top = oT + "px";
+			}
+
+			document.onmouseup = function(){
+				document.onmousemove = document.onmouseup = null; 
+			}
+		}
+
+	</script>
+</body>
+</html>

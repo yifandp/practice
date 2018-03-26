@@ -1,0 +1,106 @@
+@charset "utf-8";
+ 
+/*初始化*/
+*{ 
+	margin: 0; 
+	padding: 0;
+}
+body{
+	background: #ebebebe;
+	_position: relative;
+	_height: 100%;
+}
+img{
+	border: none;
+	display: block;
+}
+a{
+	text-decoration: none;
+	font: 12px/18px "Lucida Grande","Lucida Sans Unicode",Helvetica,Arial,Verdana,sans-serif;
+	color: #7f7f7f;
+}
+
+/* start css*/
+body{
+	background: #f6f6f6;
+}
+.page{
+	background: #fff;
+	border-color: #e5e5e5 #d8d8d8 #d2d2d2;
+	border-style: solid;
+	border-width: 1px;
+	margin: 5px auto;
+	/*width: 980px;*/
+	width: 1260px;
+	-webkit-box-shadow: rgba(36,37,38,.13) 5px 15px 20px;
+	-moz-box-shadow: rgba(36,37,38,.13) 5px 15px 20px;
+	box-shadow: rgba(36,37,38,.13) 5px 15px 20px;
+}
+
+.apple-box{
+	overflow: hidden;
+	position: relative;
+	z-index: 0;
+	/*width: 820px;*/
+	width: 1100px;
+	height: 158px;
+	margin: 0 70px;
+}
+
+.apple-box-head{
+	/*width: 1680px;*/
+	width: 2240px;
+}
+
+.apple-box-head li{
+	width: 140px;
+	float: left;
+	text-align:center;
+	list-style: none;
+}
+
+.apple-box-head li a:hover{
+	color: #333;
+}
+
+.apple-box-footer{
+	position: relative;
+	height: 30px;
+	text-align: center;
+	border-bottom: 1px solid #ebebeb;
+	background: #fff url("../images/nav_bg.png") repeat-x 0 0;
+	background: -webkit-gradient(linear, left bottom, left top, 
+		from(rgba(223,223,223,1)), 
+		color-stop(66%, rgba(242,242,242,1)), 
+		color-stop(90%, rgba(242,242,242,1)), 
+		color-stop(93%, rgba(230,230,230,1)), 
+		color-stop(96%, rgba(210,210,210,1)), 
+		to(rgba(140,140,140,1)));
+	overflow: hidden;
+}
+
+.caret{
+	position: absolute;
+	display: block;
+	width: 15px;
+	height: 8px;
+	margin: 0 0 -8px -7px;
+	background: url("../images/caret_active.gif") no-repeat scroll 0 0;
+}
+
+.apple-box-footer a{
+	display: inline-block;
+	margin: 0 15px;
+	padding: 8px 0 6px;
+	cursor: pointer;
+	text-shadow: 0 1px 0 #fff;
+}
+
+.apple-box-footer .show{
+	cursor: default;
+	color: #2b2b2b;
+}
+
+.apple-box-footer a:hover{
+	color: #333;
+}

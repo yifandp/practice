@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>apple官网产品运动效果</title>
+	<link type="text/css" href="css/apple.css" rel="stylesheet">
+	<style>
+		/*@font-face{
+			font-family: 自定义字体名称;
+			src:
+				url("字体图片地址"),
+				url("字体图片地址"),
+				url("字体图片地址")
+			;
+			font-weight:;
+			font-style: ;
+		}*/
+		/*.box{
+			perspective: 800px; 景深
+			transform-style: preserve-3d; 3d环境
+		}*/
+	</style>
+</head>
+<script type="text/javascript" src="js/miaov.js"></script>
+<body>
+	<div id="apple" class="page">
+		<div class="apple-box">
+			<ul class="apple-box-head">
+				<li><a href="javascript:void(0)"><img src="images/1.jpg" alt="">iPod shuffle</a></li>
+				<li><a href="javascript:void(0)"><img src="images/2.jpg" alt="">iPod nano</a></li>
+				<li><a href="javascript:void(0)"><img src="images/3.jpg" alt="">iPod classic</a></li>
+				<li><a href="javascript:void(0)"><img src="images/4.jpg" alt="">iPod touch</a></li>
+				<li><a href="javascript:void(0)"><img src="images/5.jpg" alt="">Apple TV</a></li>
+				<li><a href="javascript:void(0)"><img src="images/6.jpg" alt="">Accessories</a></li>
+				<li><a href="javascript:void(0)"><img src="images/5.jpg" alt="">Apple TV</a></li>
+				<li><a href="javascript:void(0)"><img src="images/6.jpg" alt="">Accessories</a></li>
+				<li><a href="javascript:void(0)"><img src="images/7.jpg" alt="">Download iTunes 10</a></li>
+				<li><a href="javascript:void(0)"><img src="images/8.jpg" alt="">iTunes Gift Cards</a></li>
+				<li><a href="javascript:void(0)"><img src="images/9.jpg" alt="">Nike + iPod</a></li>
+				<li><a href="javascript:void(0)"><img src="images/10.jpg" alt="">(PRODUCT) RED</a></li>
+				<li><a href="javascript:void(0)"><img src="images/11.jpg" alt="">MobileMe</a></li>
+				<li><a href="javascript:void(0)"><img src="images/12.jpg" alt="">In-Ear Headphones</a></li>
+				<li><a href="javascript:void(0)"><img src="images/11.jpg" alt="">MobileMe</a></li>
+				<li><a href="javascript:void(0)"><img src="images/12.jpg" alt="">In-Ear Headphones</a></li>
+			</ul>
+		</div>
+
+		<div class="apple-box-footer">
+			<span class="caret"></span>
+			<a class="show" href="javascript:void(0);">Products</a>
+			<a href="javascript:void(0);">iTunes and more</a>
+		</div>
+	</div>
+	
+	<!-- css hack -->
+	<!-- IE 条件注释 -->
+	<!--[if ie]>
+		这是IE浏览器可见内容
+	<![end if]-->
+	<!-- \9 IE 9 可以会识别的css样式
+	*/+ IE 7 ie7以下都可以识别 （包括IE7）
+    _ IE6 ie6 以下可以识别 （包括IE6） -->
+</body>
+
+<script type="text/javascript">
+
+	var apple = document.getElementById("apple");
+	var oUl = getByClass(apple, "apple-box-head")[0];
+	var aLi = oUl.getElementsByTagName("li");
+
+	var aA = getByClass(apple, "apple-box-footer")[0].getElementsByTagName("a");
+	var oSpan = getByClass(apple, "apple-box-footer")[0].getElementsByTagName("span")[0];
+
+	// 设置oSpan的初始位置
+	oSpan.style.left = aA[0].offsetLeft + aA[0].offsetWidth/2 + "px";
+
+	// 设置数组用来存放获得的li的每一项left值
+	var aPos = [];
+	var timer = null;
+	var endTime = null;
+
+	// 布局转换
+	for(var i = 0; i < aLi.length; i++){
+		aPos[i] = aLi[i].offsetLeft;
+	}
+
+	// 给所有的li设置绝对定位，并且为每一个li依次设置存放在aPos数组中的left值
+	for(var i = 0; i < aLi.length; i++){
+		aLi[i].style.position = "absolute";
+		aLi[i].style.left = aPos[i] + "px";
+	}
+
+
+	aA[1].onclick = function(){
+		// 防止用户连续点击切换 出现的运动队列
+		// var nowDate = new Date();
+		// if(nowDate.getTime() - endTime.getTime() > 1000){
+		// 	endTime = new Date();
+		endTime = new Date();
+
+		var i = 0;
+		clearInterval(timer);
+		timer = setInterval(function(){
+			miaovStartMove(aLi[i], {"left" : -apple.offsetWidth}, MIAOV_MOVE_TYPE.FLEX);
+			i++;
+
+			if(i >= aLi.length/2){
+				clearInterval(timer);
+				setTimeout(next, 300);
+			}
+
+		}, 100);
+
+		function next(){
+			// console.log(i);
+			timer = setInterval(function(){
+				miaovStartMove(aLi[i], {"left" : aPos[i-aLi.length/2]}, MIAOV_MOVE_TYPE.FLEX);
+				i++;
+
+				if(i >= aLi.length){
+					clearInterval(timer);
+				}
+			}, 100);
+		}
+
+		aA[0].className = " ";
+		aA[1].className = "show";
+		miaovStartMove(oSpan, {"left" : this.offsetLeft + (this.offsetWidth/2)}, MIAOV_MOVE_TYPE.FLEX);
+	}
+
+
+	aA[0].onclick = function(){
+		// 防止用户连续点击切换 出现的运动队列
+		var nowDate = new Date();
+		if(nowDate.getTime() - endTime.getTime() > 1500){
+			endTime = new Date();
+
+			var i = aLi.length-1;
+			clearInterval(timer);
+			timer = setInterval(function(){
+				miaovStartMove(aLi[i], {"left" : apple.offsetWidth}, MIAOV_MOVE_TYPE.FLEX);
+				i--;
+
+				if(i < aLi.length/2){
+					clearInterval(timer);
+					setTimeout(next, 300);
+				}
+
+			}, 100);
+
+			function next(){
+				timer = setInterval(function(){
+					miaovStartMove(aLi[i], {"left" : aPos[i]}, MIAOV_MOVE_TYPE.FLEX);
+					i--;
+
+					if(i < 0){
+						clearInterval(timer);
+					}
+				}, 100);
+			}
+
+			aA[0].className = " ";
+			aA[1].className = "show";
+			miaovStartMove(oSpan, {"left" : this.offsetLeft + (this.offsetWidth/2)}, MIAOV_MOVE_TYPE.FLEX);
+		}
+	}
+
+	//  封装获取class的函数
+	function getByClass(oParent,sClass){
+		var aEle = oParent.getElementsByTagName("*");
+		var result = [];
+		var reg = new RegExp("\\b"+sClass+"\\b", i);
+
+		for(var i = 0; i < aEle.length; i++){
+			if(reg.test(aEle[i].className)){
+				result.push(aEle[i]);
+			}
+		}
+
+		return result;
+	}
+
+</script>
+</html>

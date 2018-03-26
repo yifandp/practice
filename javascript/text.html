@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>text</title>
+	<style type="text/css">
+		.title{
+			margin-top: 10px;
+			font-size: 60px;
+			font-family: "Microsoft YaHei";
+			background-image: url(images/pattern01.jpg);
+			/*text-fill-color 会覆盖字体color的颜色(-webkit-)*/
+			-webkit-text-fill-color: transparent;
+			text-fill-color: transparent;
+			-webkit-background-clip: text;
+			background-clip: text;
+			white-space: nowrap;
+			-webkit-box-reflect: below -12px linear-gradient(transparent, transparent 46%, rgba(0,0,0,.3));
+		}
+		.title .text{
+			position: absolute;
+			background-image: linear-gradient(to bottom , #d4fc79 , #96e6a1);
+			-webkit-text-fill-color: transparent ;
+			text-fill-color: transparent;
+			-webkit-background-clip: text;
+			background-clip: text;
+			mix-blend-mode: overlay;
+			-webkit-text-stroke: 1px transparent;
+		}
+		.title .text::before{
+			content: attr(data-attr);
+		}
+		label{
+			display: inline-block;
+			width: 100px;
+			text-align: justify;
+			text-align-last: justify;
+		}
+	</style>
+</head>
+<body>
+	<div class="demo">
+		<h2 class="title">
+			<span class="text" data-attr="CSS 文字渐变"></span>
+			CSS 文字渐变
+		</h2>
+	</di>
+	
+	<div class="test">
+		<p>
+			<label for="text1">用户名</label>
+			<input type="text" name="name" id="text1">
+		</p>
+		<p>
+			<label for="text2">密码</label>
+			<input type="password" name="pwd" id="text2">
+		</p>
+	</div>
+
+	<script type="text/javascript">
+		
+	</script>
+</body>
+</html>

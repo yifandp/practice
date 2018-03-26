@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>v-if指令</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+	<div class="app">
+		<button v-on:click="toggle">显示/隐藏</button><br>
+		<span v-if="seen">现在你看到我了</span>
+	</div>
+
+	<div class="mesg">
+		<p>{{message}}</p>
+		<button v-on:click="msgVerser">消息逆转</button>
+	</div>
+
+	<script>
+		var app = new Vue({
+			el: ".app",
+			data:{
+				seen: false
+			},
+			methods:{
+				toggle: function(){
+					this.seen = !this.seen
+				}
+			}
+		})
+
+		var msg = new Vue({
+			el: ".mesg",
+			data: {
+				message: "hello Vue.js !"
+			},
+			methods:{
+				msgVerser: function(){
+					this.message = this.message.split("").reverse().join("");
+				}
+			}
+		})
+	</script>
+</body>
+</html>

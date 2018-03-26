@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>v-for指令</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+	<div class="app">
+		<ul>
+			<li v-for="name in names">{{name}}</li>
+		</ul>
+
+		<ul>
+			<li v-for="i in 10">{{i}}</li>
+		</ul>
+	</div>
+
+	<script>
+		var app = new Vue({
+			el:".app",
+			data:{
+				names:['张三','李四','王五','小米','李松','利旧']
+			}
+		})
+
+		// 在控制台可以使用Vue的对象 app.names.push("小明"); 向数据里添加新数据(页面也会事实更新);
+	</script>
+</body>
+</html>

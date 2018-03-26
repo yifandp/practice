@@ -1,0 +1,90 @@
+@charset "utf-8";
+/* CSS Document */
+/*html,body { user-select: none; -moz-user-select: none; -webkit-user-select: none; }*/
+body,
+ul,
+ol,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+input,
+select,
+textarea,
+form {
+  margin: 0;
+  padding: 0;
+}
+html {
+ 
+}
+body {
+  font-family: Arial, 'Microsoft YaHei';
+  color: #666;
+  overflow-x: hidden;
+  position: relative;
+  background: url(../images/bg.gif) repeat;
+}
+li {
+  list-style: none;
+}
+img {
+  border: none;
+  display: block;
+}
+input,
+select,
+textarea,
+button {
+  outline: none;
+  border: none;
+  background-color: transparent;
+  -webkit-appearance:none;
+}
+em,
+i,
+dfn {
+  font-style: normal;
+}
+textarea {
+  resize: none;
+}
+a {
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  color: #666;
+}
+/*a:hover{ opacity:0.9; filter: alpha(opacity=90);}*/
+button {
+  cursor: pointer;
+  transition: 0.5s;
+}
+button:focus {
+  border: none;
+  outline: none;
+  opacity: 0.6;
+  filter: alpha(opacity=60);
+}
+/*浮动*/
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.clear:after,
+.clear:before {
+  content: "";
+  display: table;
+}
+.clear:after {
+  clear: both;
+}
+.clear {
+  *zoom: 1;
+}

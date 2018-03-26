@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue Demo</title>
+	<style>
+		.box{
+			width:100px;
+			height: 100px;
+			background: skyblue;
+		}
+	</style>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+	<div id="app">
+		<button v-on:click="toggle">按钮</button>
+		<div class="box" v-show="isShow"></div>
+	</div>
+</body>
+<script>
+	new Vue({
+		el: "#app",
+		data:{
+			isShow: false,
+		},
+		methods:{
+			toggle(){
+				this.isShow = !this.isShow
+			}
+		}
+	});
+</script>
+</html>

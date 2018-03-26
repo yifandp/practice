@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>createTab</title>
+</head>
+<body>
+	<div class="box"></div>
+	<script type="text/javascript">
+		var data = [
+			{ name:"张三",subject:"语文",score:"80"},
+			{ name:"李四",subject:"英语",score:"50"},
+			{ name:"王五",subject:"数学",score:"86"},
+			{ name:"赵六",subject:"物理",score:"76"},
+			{ name:"小龙",subject:"化学",score:"50"},
+			{ name:"小明",subject:"音乐",score:"90"}
+		]
+
+		var headData = ["姓名","科目","成绩","操作"];
+
+		var box = document.querySelector(".box");
+		
+		// 动态创建table表格
+		createTable(box,headData,data);
+		
+		function createTable(parent, headData, bodyData){
+			// 创建表头
+			createHead(parent, headData);
+			// 创建数据行
+			createBody(bodyData);
+
+			// 创建表头函数
+			var table = null;
+			function createHead(parent, headData){
+				table = document.createElement("table");
+				parent.appendChild(table);
+
+				table.border = 1;
+				table.width = 500;
+				table.cellSpacing = 0;
+
+				var thead = document.createElement("thead");
+				table.appendChild(thead);
+
+				var tr = document.createElement("tr");
+				thead.appendChild(tr);
+				tr.style.height = "50px";
+				tr.style.backgroundColor = "lightgray";
+
+				headData.forEach(function(item){
+					var th = document.createElement("th");
+					th.innerHTML += item;
+					tr.appendChild(th);
+				})
+
+			}
+
+			//创建数据行
+			function createBody(bodyData){
+				var tbody = document.createElement("tbody");
+				table.appendChild(tbody);
+				tbody.style.textAlign = "center";
+
+				bodyData.forEach(function(item){
+					var tr = document.createElement("tr");
+					tbody.appendChild(tr);
+
+					for(var key in item){
+						var td = document.createElement("td");
+						tr.appendChild(td);
+						td.innerHTML += item[key];
+					}
+
+					var td = document.createElement("td");
+					tr.appendChild(td);
+					var oA = document.createElement("a");
+					oA.href = "javascript:void(0)";
+					oA.innerHTML = "删除";
+					oA.onclick = delData;
+					td.appendChild(oA);
+				})
+
+				function delData(){
+					var tipsText = this.parentNode.parentNode.children[0].innerHTML;
+					var tips = confirm("你是否要删除　"+tipsText+"　的数据");
+					if(tips){
+						tbody.removeChild(this.parentNode.parentNode);
+					} 
+				}
+
+			}
+		}
+
+
+		/**
+		 * 
+		 * // 表头行
+			var table = document.createElement("table");
+			table.border = 1;
+			table.width = 500;
+			table.cellSpacing = 0;
+
+			box.appendChild(table);
+
+			var thead = document.createElement("thead");
+			table.appendChild(thead);
+
+			var tr = document.createElement("tr");
+			tr.style.height = "50px";
+			tr.style.backgroundColor = "lightgray";
+
+			thead.appendChild(tr);
+
+			headData.forEach(function(item){
+				var th = document.createElement("th");
+				th.innerHTML += item;
+				tr.appendChild(th)
+			})
+			
+			// 数据行
+			var tbody = document.createElement("tbody");
+			tbody.style.textAlign = "center";
+			table.appendChild(tbody);
+
+			data.forEach(function(item){
+				var tr = document.createElement("tr");
+				tbody.appendChild(tr);
+				
+				for(var key in item){
+					var td = document.createElement("td");
+					td.innerHTML = item[key];
+					tr.appendChild(td);
+				}
+
+				var td = document.createElement("td");
+				tr.appendChild(td);
+				var oA = document.createElement("a");
+				oA.href = "javascript:void(0)";
+				oA.innerHTML = "删除";
+				oA.onclick = function(){
+					var tipsText = this.parentNode.parentNode.children[0].innerHTML;
+					var tips = confirm("你是否要删除　"+tipsText+"　的数据");
+					if(tips){
+						tbody.removeChild(this.parentNode.parentNode);
+					}
+				}
+				td.appendChild(oA);
+			})
+		 */
+
+
+	</script>
+</body>
+</html>

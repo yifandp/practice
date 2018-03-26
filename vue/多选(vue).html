@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vue 多选</title>
+	<style>
+		.box{
+			width: 80%;
+			margin: 100px auto;
+		}
+		.clear::after{
+			content: ".";
+			height: 0;
+			visibility: hidden;
+			display: block;
+			clear: both;
+		}
+		.checkbox{
+			padding: 0;
+			margin:0;
+			display: inline-block;
+			list-style: none;
+		}
+		.checkbox .item{
+			float: left;
+			padding: 12px 20px 12px 30px;
+			cursor: pointer;
+			position: relative;
+			transition: .2s all;
+		}
+		.checkbox .item::before{
+			content: "";
+			width: 12px;
+			height: 12px;
+			position: absolute;
+			top: 16px;
+			left: 10px;
+			display: inline-block;
+			border: 1px solid #333;
+			transition: .2s all;
+		}
+
+		.checkbox .item.checked,.checkbox .item:hover{
+			color: #409eff;
+		}
+		
+		.checkbox .item.checked::before{
+			border-color: #409eff;
+			background-color: #409eff;
+			content: "√";
+			color: #fff;
+			font-size: 12px;
+			line-height: 12px;
+			font-weight: bold;
+		}
+	</style>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+	<div class="box">
+		<ul class="checkbox clear">
+			<li 
+				v-for="city in cities" 
+				class="item" 
+				:class="{'checked': city.checked}"
+				@click="choose(city)"
+				>
+					{{city.name}}
+				</li>
+			<!-- <li class="item checked">北京</li>
+			<li class="item">上海</li>
+			<li class="item">深圳</li>
+			<li class="item">武汉</li> -->
+		</ul>
+	</div>
+
+	<script>
+	let app = new Vue({
+			el:".box",
+			data:{
+				cities:[
+					{name: "北京", checked: false},
+					{name: "上海", checked: false},
+					{name: "深圳", checked: false},
+					{name: "广州", checked: false},
+					{name: "武汉", checked: false},
+					{name: "长沙", checked: false},
+					{name: "南昌", checked: false}
+				]
+			},
+			methods:{
+				choose (city){
+					city.checked  =! city.checked;
+				}
+			}
+		})
+	</script>
+</body>
+</html>

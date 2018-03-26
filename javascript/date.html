@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>date</title>
+</head>
+<body>
+	<p></p>
+	<script>
+		function getTime(start, end){
+			var interval = end - start;
+			interval /= 1000; // 将时间戳化成秒
+
+			var day,hour,min,second;
+			day = Math.floor(interval / 60 / 60 / 24);
+			hour = Math.floor(interval / 60 / 60 % 24);
+			min = Math.floor(interval / 60 % 60);
+			second = Math.floor(interval % 60);
+
+			function setZero(n){
+				return n < 10 ? '0' + n : n;
+			} 
+			var arr = [day,hour,min,second];
+			arr = arr.map(setZero);
+
+			return {
+				day: arr[0],
+				hour: arr[1],
+				min: arr[2],
+				second: arr[3]
+			}
+		}
+		var oP = document.querySelector("p");
+
+		setInter();
+
+		setInterval(setInter,1000);
+
+		function setInter(){
+			var endDate = new Date('2018-3-25');
+			var start = new Date();
+			var obj = getTime(start,endDate);
+			oP.innerHTML = obj.day+ "天" +obj.hour + "时"+ obj.min+ "分"+ obj.second + "秒";
+		}
+	</script>
+</body>
+</html>

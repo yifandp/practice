@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>商品全选</title>
+    <style>
+        *{ margin:0; padding:0;}
+        .goods{
+            width: 500px;
+            margin: 40px auto 0;
+        }
+        .goods table{
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+            text-align: center;
+            border: 1px solid #c0c0c0;
+        }
+        .goods table td{
+            border: 1px solid #c0c0c0;
+        }
+        #pric{
+            background: skyblue;
+            color: #fff;
+            font-size: 16px;
+            line-height:40px;
+        }
+
+        #j_tb tr{
+            font-size: 14px;
+            line-height:40px;
+        }
+    </style>
+</head>
+<body>
+<div class="goods">
+    <table cellpadding="0" cellspacing ="0">
+        <thead id="pric">
+            <tr>
+                <td>全选<input type="checkbox" id="j_cbAll"></td>
+                <td>商品</td>
+                <td>价格</td>
+            </tr>
+        </thead>
+        <tbody id="j_tb">
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>ipboneX</td>
+                <td>8888</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>ipad Pro</td>
+                <td>3400</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>Mac Book Pro</td>
+                <td>18888</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>Mac Book Air</td>
+                <td>5660</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>iWitch</td>
+                <td>2000</td>
+            </tr>
+        </tbody>
+    </table>
+    <input type="button" value="返选" id="btn">
+</div>
+<script>
+//  1,当点击 j_cbAll时让j_tb下的所有input的状态与j_cbAll的状态保持一致
+    var j_cbAll = document.getElementById("j_cbAll");
+    var inputs = document.querySelectorAll('#j_tb input[type="checkbox"]');
+    var oBtn = document.getElementById("btn");
+
+    j_cbAll.onclick = function(){
+        for(var i = 0; i < inputs.length; i++){
+            inputs[i].checked = this.checked;
+        }
+    }
+
+//   2，为每一项的input选项添点击事件当有一项没被选中时全选不选中
+    for(var i = 0; i < inputs.length; i++){
+        inputs[i].onclick = singleCheckBox;
+        function singleCheckBox() {
+            var isCheckAll = true;
+            for(var i = 0; i < inputs.length; i++){
+                if(!inputs[i].checked){
+                    isCheckAll = false;
+                    break;
+                }
+            }
+            j_cbAll.checked = isCheckAll;
+        }
+    }
+
+// 3,返选
+    oBtn.onclick = function(){
+//        让所有的子checkbox的checked的状态取反即可
+        for(var i = 0; i < inputs.length; i++){
+            inputs[i].checked = !inputs[i].checked;
+        }
+//        如果有一个子的checkbox没选中，父的checkbox也不选中
+        singleCheckBox();
+    }
+
+</script>
+</body>
+</html>

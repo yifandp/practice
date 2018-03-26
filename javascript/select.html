@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>select</title>
+	<style type="text/css">
+		select{
+			width: 200px;
+			height: 200px;
+			background: skyblue;
+			font-size: 20px;
+		}
+	</style>
+</head>
+<body>
+	<select id="ul" multiple="multiple">
+		<option>增</option>
+		<option>删</option>
+		<option>改</option>
+		<option>查</option>
+	</select>
+	<input type="button" name="" value=">>">
+	<input type="button" name="" value=">">
+	<input type="button" name="" value="<<">
+	<input type="button" name="" value="<">
+	<select id="second" multiple="multiple"></select>
+	
+	<ul>
+		<li>
+			<dfn>dfn标签</dfn>
+		</li>
+		<li></li>
+	</ul>
+
+
+	<script type="text/javascript">
+		var ul = document.getElementById("ul");
+		var second = document.getElementById("second");
+		var aBtn = document.getElementsByTagName('input');
+
+		var len = ul.children.length;
+		// 全部移动至右
+		aBtn[0].onclick = function(){
+			for(var i = 0 ; i < len; i++){
+				second.appendChild(ul.children[0]);
+			}
+		}
+		// 选择移动至右
+		aBtn[1].onclick = function(){
+			for(var i = 0; i < len; i++){
+				if(ul.children[i].selected){
+					second.appendChild(ul.children[i]);
+					i--;
+				}
+			}
+		}
+		// 全部移动至左
+		aBtn[2].onclick = function(){
+			for(var i = 0 ; i < len; i++){
+				ul.appendChild(second.children[0]);
+			}
+		}
+		// 选择移动至左
+		aBtn[3].onclick = function(){
+			for(var i = 0;  i < len; i++){
+				if(second.children[i].selected){
+					ul.appendChild(second.children[i]);
+					i--;
+				}
+			}
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="css/text-demo.css">
+	<style type="text/css">
+		body{
+			background-color: #efefef;
+		}
+		.pattern-overlay {
+		    margin-top: 0;
+		    font-size: 60px;
+		    font-family: 'microsoft yahei';
+		    background-image: url(images/pattern01.jpg); 
+		    /*background-blend-mode: overlay;*/
+		    -webkit-text-fill-color: transparent;
+		    text-fill-color: transparent;
+		    -webkit-background-clip: text;
+		    background-clip: text;
+		    white-space: nowrap;
+		    -webkit-box-reflect: below -20px linear-gradient(transparent, transparent 46%, rgba(0,0,0,.5));
+		}
+		.pattern-overlay > span {
+		    position: absolute;
+		    background-image: linear-gradient(to bottom, #f00, #f00);
+		    mix-blend-mode: overlay;
+		    -webkit-text-fill-color: transparent;
+		    text-fill-color: transparent;
+		    -webkit-background-clip: text;
+		    background-clip: text;
+		}
+		.pattern-overlay > span::before {
+		    content: attr(data-text);    
+		}
+
+		.demo img {
+			vertical-align: top;
+		}
+		input[size="8"] {
+			margin-right: 20px;
+		}
+		[type="file"] {
+			margin-left: 22px;
+		}
+		img:not([src]) {
+			display: none;	
+		}
+		.demo p:last-child > img {
+			margin-left: 22px;
+		}
+	</style>
+</head>
+<body>
+<div id="body">
+	<div id="effect" class="part">
+    	<h3>效果：</h3>
+        <div class="show">
+        	<div class="demo">
+            	<h2 class="pattern-overlay">
+                	<span data-text="CSS纹理叠加"></span>
+                    CSS纹理叠加
+                </h2>
+                <h4>设置文字渐变起止颜色：</h4>
+                <p>起始色：
+                	<input type="color" size="8" value="#ff0000" name="start"> 终止色：<input type="color" size="8" value="#ff0000" name="end">
+                </p>
+            	<h4>选择纹理原图：</h4>
+                <p>
+                	<input id="pattern1" type="radio" name="pattern" value="images/pattern01.jpg" checked="">
+                	<label for="pattern1">
+                		<img src="images/pattern01.jpg" width="270" height="90">
+                	</label>
+                </p>
+                <p>
+                	<input id="pattern2" type="radio" name="pattern" value="images/pattern04.jpg">
+                	<label for="pattern2">
+                		<img src="images/pattern04.jpg" width="270" height="90">
+                	</label>
+                </p>
+                <p>
+                	<input id="pattern3" type="radio" name="pattern">
+                	<label for="pattern3">自己本地上传</label>
+                </p>
+                <p>
+                	<input type="file" accept="image/jpeg,image/png,image/gif">
+                </p>
+                <p>
+                	<img id="uplaodImg">
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script>
+	// 交互JS，
+	// 背景图片实时刷新
+	// 也就是改变默认CSS中这段background-image: url(./pattern01.jpg), linear-gradient(to bottom, #333, #333);
+	// 与叠加效果实现并无关系
+	var eleInputs = [].slice.call(document.querySelectorAll('input'));
+	// console.log(eleInputs);
+	var eleImg = document.getElementById('uplaodImg');
+	var eleTitle = document.querySelector('#effect h2');
+	var eleTitleSub = document.querySelector('#effect h2 > span');
+	var funPatternOverlay = function () {
+		var bgImg = '', start = '', end = '';
+		eleInputs.forEach(function (ele) {
+			var name = ele.name;
+			var value = ele.value;
+			// 确定渐变色
+			if (name == 'start') {
+				start = value;
+			} else if (name == 'end') {
+				end = value;
+			} else if (name == 'pattern' && ele.checked) {
+				if (ele.id != 'pattern3') {
+					// 默认2个纹理单选
+					bgImg = value;
+				} else {
+					bgImg = eleImg.src;
+				}
+			}
+		});
+		if (bgImg && start && end) {
+			eleTitle.style.backgroundImage = 'url('+ bgImg +')';
+			eleTitleSub.style.backgroundImage = 'linear-gradient(to bottom, '+ start +', '+ end +')';
+		}
+	};
+	eleInputs.forEach(function (ele) {
+		ele.addEventListener('change', function (event) {
+			if (this.type == 'file' && event.target.files && event.target.files.length) {
+				var reader = new FileReader();
+				reader.onload = function(e) {
+					eleImg.src = e.target.result;
+					funPatternOverlay();
+				};
+				reader.readAsDataURL(event.target.files[0]);
+				console.log(event.target.files[0]);
+
+			} else {
+				funPatternOverlay();
+			}		
+		});
+	});
+	</script>
+</body>
+</html>

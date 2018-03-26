@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<!--[if IE 8]>
+		<p>Welcome to Internet Explorer 8.</p>
+	<![endif]-->
+</head>
+<body>
+	<div id="box"></div>
+	<br>
+	<input type="text" autofocus><br>
+	<input type="text"><br>
+	<input type="text"><br>
+	<input type="text"><br>
+	<input type="text"><br>
+	<input type="text"><br>
+	<input type="text"><br>
+	<input type="text"><br>
+	<input type="text"><br>
+	<input type="text"><br>
+	<input type="button" value="赋值">
+	<input type="button" value="取值">
+
+
+</body>
+<script>
+
+	var box = document.getElementById("box");
+	getInnerText(box,'hello javascript');
+	console.log(getInnerText(box,"hello javascript"));
+
+//	处理innerText与innerContent的兼容性问题
+	function getInnerText(ele,content){
+//	    如果类型是 字符串类型说明存在此属性   如果为undefined类型则不存在
+		if(typeof ele.innerText === 'string'){
+			return ele.innerText = content;
+		}else{
+		    return ele.innerContent = content;
+		}
+	}
+
+	var inputs = document.getElementsByTagName("input");
+	var btnObtain = inputs[inputs.length-2];
+	var btnAssign =	inputs[inputs.length-1];
+
+    btnObtain.onclick = function(){
+	    for(var i = 0; i<inputs.length; i++){
+			if(inputs[i].type == 'text'){
+                inputs[i].value = i + 1;
+			}
+		}
+	}
+
+    btnAssign.onclick = function(){
+        if(inputs[0].value){
+            var str = "";
+            for(var i = 0; i<inputs.length; i++){
+
+                if(inputs[i].type !== 'text') {
+                    continue;
+                }
+                str += inputs[i].value + "|";
+            }
+            box.innerHTML = str.substr(0,str.length-1);
+        }else{
+            alert("请先赋值！");
+        }
+    }
+
+
+//    获取随机数的值
+    function getRandomNum(min,max){
+        min = Math.ceil(min);
+        max = Math.floor(max);
+//        Math,random()*(最大值-最小值+1)+最小值
+        return Math.floor(Math.random()*(max-min+1)+min);
+	}
+
+//	console.log(getRandomNum(1,5));
+</script>
+<script>
+	function ajax(url,method,data,callback){
+		var xhr = null;
+		if(window.XMLHttpRequest){
+			xhr = new XMLHttpRequest();
+		}else{
+			xhr = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+
+		if (method == 'get' && data) {
+			url += '?' + data;
+		}
+	
+		xhr.open(method,url,true);
+		if (method == 'get') {
+			xhr.send();
+		} else {
+			xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
+			xhr.send(data);
+		}
+		
+		xhr.onreadystatechange = function() {
+			
+			if ( xhr.readyState == 4 ) {
+				if ( xhr.status == 200 ) {
+					success && success(xhr.responseText);
+				} else {
+					alert('出错了,Err：' + xhr.status);
+				}
+			}
+			
+		}
+
+	}
+</script>
+</html>

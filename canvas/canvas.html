@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas</title>
+	<style>
+		#tutorial{
+			display: block;
+			margin: 20px auto;
+			border: 1px solid #ddd;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="tutorial">
+		<p>您的浏览器不支持canvas 请更新您的浏览器</p>
+	</canvas>
+
+	<script>
+		function draw(){
+			var canvas = document.getElementById("tutorial");
+			canvas.width = 1024;
+			canvas.height = 768;
+			if(!canvas.getContext)return;
+			// 获取上下文
+
+			var ctx = canvas.getContext("2d");
+
+			// ctx.beginPath();
+			// ctx.moveTo(100,100);
+			// ctx.lineTo(700,700);
+			// ctx.lineTo(100,700);
+			// ctx.lineTo(100,100);
+			// ctx.lineWidth = 5;
+			// ctx.strokeStyle = "red";
+			// ctx.stroke();
+			// ctx.closePath();
+			
+
+			// ctx.beginPath();
+			// ctx.fillStyle = '#f90';
+			// ctx.fillRect(10,10,100,50);
+			// ctx.strokeStyle = "#9f0";
+			// ctx.strokeRect(10,70,100,50);
+			// ctx.clearRect(15,15,50,25);
+			// ctx.closePath();
+
+			// ctx.beginPath();
+			// ctx.fillStyle = "rgb(200,0,0)";
+			// ctx.fillRect( 10, 10, 55, 50);
+			// ctx.fillStyle = "rgba(0,0,200,.5)";
+			// ctx.fillRect(30,33,55,50);
+			// ctx.closePath();
+
+			// ctx.beginPath();
+			// ctx.moveTo(50,50);
+			// ctx.lineTo(200,50);
+			// ctx.lineTo(200,200);
+			// ctx.stroke();
+			// ctx.closePath();
+
+			// ctx.beginPath();
+			// // 角度转弧度
+			// // radians=(Math.PI/180)*degrees
+			// //var radians = (Math.PI/180)*90;
+			// ctx.arc(400,400,50,0,Math.PI, false);
+			// ctx.stroke();
+
+			// ctx.beginPath();
+			// ctx.arc(50,50,40,0,Math.PI/2,false);
+			// ctx.stroke();
+
+			// ctx.beginPath();
+			// ctx.arc(150,50,40,0,-Math.PI/2,true);
+			// ctx.closePath();
+			// ctx.stroke();
+
+			// ctx.beginPath();
+			// ctx.arc(50,150,40,-Math.PI/2,Math.PI/2,false);
+			// ctx.fill();
+
+			// ctx.beginPath();
+			// ctx.arc(150,150,40,0,Math.PI,false);
+			// ctx.fill();
+
+			/**
+			ctx.beginPath();
+			ctx.strokeStyle = "orange";
+			ctx.moveTo(50,50);
+			ctx.arcTo(200,50,200,200,100);
+			ctx.lineTo(200,200);
+			ctx.stroke();
+
+			ctx.beginPath();
+			ctx.rect(50,50,10,10);
+			ctx.rect(200,50,10,10);
+			ctx.rect(200,200,10,10);
+			ctx.fill();
+
+			ctx.beginPath();
+			ctx.moveTo(50,50);
+			ctx.lineTo(200,50);
+			ctx.lineTo(200,200);
+			ctx.stroke();
+
+			ctx.font = "18px sans-serif";
+			ctx.textAlign = "center";
+			ctx.textBaseline = "bottom";
+			ctx.direction = "inherit";
+			ctx.fillText("起点",50,50);
+
+			ctx.font = "18px sans-serif";
+			ctx.textAlign = "center";
+			ctx.textBaseline = "bottom";
+			ctx.direction = "inherit";
+			ctx.fillText("控制点1",200,50);
+
+			ctx.font = "18px sans-serif";
+			ctx.textAlign = "left";
+			ctx.textBaseline = "bottom";
+			ctx.fillText("控制点2",200,200);
+			*/
+
+			// for(var i = 0; i < 6; i++){
+			// 	for(var j = 0; j < 6; j++){
+			// 		ctx.fillStyle = "rgb("+Math.floor(255 - 42.5*i)+","+Math.floor(255 - 42.5 * j)+",0)";
+			// 		ctx.fillRect(j * 50, i * 50, 50 , 50);
+			// 	}
+			// }
+
+
+			/*
+			for(var i = 0; i < 6; i++){
+				for(var j = 0; j < 6; j++){
+					// 'rgb(${randomInt(0,255)}, ${randomInt(0,255)}, ${randomInt(0,255)})';
+					ctx.strokeStyle = "rgb("+randomInt(0,255)+","+randomInt(0,255)+","+randomInt(0,255)+")";
+					ctx.strokeRect(j * 50 , i * 50 , 40 , 40);
+				}
+			}
+			*/
+
+			for(var i = 0; i < 10; i++){
+				for(var j = 0; j < 10; j++){
+					// 'rgb(${randomInt(0,255)}, ${randomInt(0,255)}, ${randomInt(0,255)})';
+					ctx.fillStyle = "rgb("+randomInt(0,255)+","+randomInt(0,255)+","+randomInt(0,255)+")";
+					ctx.fillRect(j * 50 , i * 50 , 40 , 40);
+				}
+			}
+
+			/* 公共函数 随机颜色值*/
+			function randomInt(from,to){
+				return parseInt(Math.random()*(to - from +1)+from);
+			}
+			
+		}
+		
+		draw();
+
+		var timer = null;
+		 timer = setInterval(function(){
+		 	draw();
+		 },500);
+	</script>
+</body>
+</html>
