@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>物流规则编辑</title>
+	<link rel="stylesheet" href="css/calc.css">
+</head>
+<body>
+<!-- S 底层遮罩层 -->
+<div class="mask"></div>
+<!-- E 底层遮罩层 -->
+<div class="calc-container">
+	<!-- S 头部 -->
+	<div class="calc-title">
+		<h3>编辑规则</h3>
+		<a class="close-panel" href="javascript:;"></a>
+	</div>
+	<!-- E 头部 -->
+	<!-- S 主体 -->
+	<div class="calc-content clearfix">
+		<!-- S 左侧操作部分 -->
+		<div class="calc-operation">
+			<div class="calc-main">
+				<p class="title">公式计算器</p>
+				<div class="calc-show">
+					<p><input class="show-box" readonly type="text" value=""></p>
+					<div class="calc-wrap clearfix">
+						<ul class="company">
+							<li data-val="MaxEdge">MaxEdge</li>
+							<li data-val="MidEdge">MidEdge</li>
+							<li data-val="MinEdge">MinEdge</li>
+							<li data-val="Weight">Weight</li>
+						</ul>
+						<ul class="clearfix num">
+							<li data-val="7">7</li>
+							<li data-val="8">8</li>
+							<li data-val="9">9</li>
+							<li data-val=">">> </li>
+							<li data-val="4">4</li>
+							<li data-val="5">5</li>
+							<li data-val="6">6</li>
+							<li data-val="<">< </li>
+							<li data-val="1">1</li>
+							<li data-val="2">2</li>
+							<li data-val="3">3</li>
+							<li data-val="=">=</li>
+							<li data-val="0" class="zoer">0</li>
+							<li data-val=".">.</li>
+							<li data-val="delete" class="del-key"></li>
+						</ul>
+						<ul class="condition">
+							<li data-val="Or">Or</li>
+							<li data-val="And">And</li>
+							<li class="enter" data-val="Enter">Enter</li>
+						</ul>
+					</div>
+				</div>
+				<div class="calc-company">
+					<p class="chooes">单位选择</p>
+					<p class="c-length">
+						<label>长度：</label>
+						<span><input type="radio" value="CM" checked name="companys">CM</span>
+						<span><input type="radio" value="INCH" name="companys">INCH</span>
+					</p>
+					<p class="c-weight"> 
+						<label>重量：</label>
+						<span><input type="radio" value="KG" checked name="weights">KG</span>
+						<span><input type="radio" value="LBS" name="weights">LBS</span>
+					</p>
+				</div>
+			</div>
+		</div>
+		<!-- E 左侧操作部分 -->
+		<!-- S 右侧操作部分 -->
+		<div class="calc-result">
+			<div class="condition-show"></div>
+			<div class="form-panel">
+				<p>
+					<label for="">Length</label>
+					<input type="text" name="Length">
+					<span>CM</span>
+				</p>
+				<p>
+					<label for="">Width</label>
+					<input type="text" name="Width">
+					<span>CM</span>
+				</p>
+				<p>
+					<label for="">Height</label>
+					<input type="text" name="Height">
+					<span>CM</span>
+				</p>
+				<p>
+					<label for="">Weight</label>
+					<input type="text" name="Weight">
+					<span>KG</span>
+				</p>
+				<div class="result-wrap clearfix">
+					<div class="result">
+						结果：<span class="tip-success">正确</span>
+					</div>
+					<a class="test" href="javascript:;">测试</a>
+				</div>
+			</div>
+		</div>
+		<!-- E 右侧操作部分 -->
+	</div>
+	<!-- E 主体 -->
+	<!-- S 保存 -->
+	<div class="preservation">
+		<a class="cancel" href="javascript:;">取消</a>
+		<a class="storage" href="javascript:;">保存</a>
+	</div>
+	<!-- S 保存 -->
+</div>
+</body>
+<script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/calc.js"></script>
+</html>

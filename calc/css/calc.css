@@ -1,0 +1,330 @@
+@charset "utf-8";
+body,h3,p,ul{
+	padding: 0;
+	margin:0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+}
+input {
+    outline: none;
+    border: none;
+    padding: 0;
+}
+.clearfix:after{
+	content: "";
+	display: block;
+	clear: both;
+}
+
+/*标题部分*/
+.mask{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,.2);
+	z-index: 1000;
+}
+.calc-content{
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+}
+.calc-container{
+	position: relative;
+	z-index: 10001;
+	width: 820px;
+	margin: 0 auto;
+	padding-bottom: 36px;
+	background: #fff;
+}
+.calc-container .calc-title{
+	height: 40px;
+	background: #263950;
+	position: relative;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+}
+.calc-container .calc-title h3{
+	color: #fff;
+	font-size: 14px;
+	line-height: 40px;
+	text-indent: 10px;
+}
+.calc-container .calc-title .close-panel{
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 40px;
+	height: 40px;
+	background: url(../images/close.png) no-repeat center;
+	-webkit-background-size: 35% 35%;
+	-moz-background-size: 35% 35%;
+	-ms-background-size: 35% 35%;
+	-o-background-size: 35% 35%;
+	background-size: 35% 35%;
+}
+
+/*计算器操作部分*/
+.calc-content{
+	margin-top: 10px;
+	color: #263950 ;
+}
+.calc-operation{
+	padding-left: 10px;
+	float: left;
+	width: 370px;
+}
+.calc-operation .calc-main .title{
+	font-size: 14px;
+	line-height: 40px;
+}
+.calc-operation .calc-main .calc-show{
+	width: 370px;
+}
+.calc-main .calc-show .show-box{
+	width: 368px;
+	border: 1px solid #d8d8d8;
+	height: 38px;
+	line-height: 38px;
+	color: #263950 ;
+	text-indent: 10px;
+	font-size: 12px;
+}
+.calc-main .calc-show .calc-wrap{
+	border: 1px solid #d8d8d8;
+	padding:0 10px;
+	border-radius: 0 0 4px 4px;
+}
+.calc-main .calc-show  li{
+	list-style: none;
+	color: #263950;
+	font-size: 12px;
+	background: #A9B0BE ;
+	border-radius: 4px;
+	text-align: center;
+	cursor: pointer;
+	-webkit-box-shadow: 0 2px 1px 0 #D8D8D8, inset 0 1px 3px 0 rgba(236,245,255,0.48);
+	-moz-box-shadow: 0 2px 1px 0 #D8D8D8, inset 0 1px 3px 0 rgba(236,245,255,0.48);
+	-o-box-shadow: 0 2px 1px 0 #D8D8D8, inset 0 1px 3px 0 rgba(236,245,255,0.48);
+	-ms-box-shadow: 0 2px 1px 0 #D8D8D8, inset 0 1px 3px 0 rgba(236,245,255,0.48);
+	box-shadow: 0 2px 1px 0 #D8D8D8, inset 0 1px 3px 0 rgba(236,245,255,0.48);
+}
+.calc-main .calc-show .company{
+	width: 92px;
+	float: left;
+}
+.calc-main .calc-show .company li{
+	width: 78px;
+	height: 45px;
+	line-height: 45px;
+	margin: 20px 0;
+}
+.calc-main .calc-show .num{
+	float: left;
+	width: 190px;
+	padding-top: 20px
+}
+.calc-main .calc-show .num li{ 
+	height: 45px;
+	width: 32px;
+	line-height: 45px;
+	float: left;
+	margin: 0 15px 20px 0;
+}
+.calc-main .calc-show .condition{
+	width: 65px;
+	float: left;
+	padding-top: 20px;
+}
+.calc-main .calc-show .condition li{
+	width: 62px;
+	height: 60px;
+	line-height: 60px;
+	margin-bottom: 15px;
+}
+.calc-main .calc-show .condition li.enter{
+	height: 90px;
+	line-height: 90px;
+}
+.calc-main .calc-show .num li.zoer{
+	height: 45px;
+	width: 80px;
+	line-height: 45px;
+}
+.calc-main .calc-show .num li.del-key{
+	background: #A9B0BE url(../images/Delete.png) no-repeat center;
+	-webkit-background-size: 60% 30%;
+	-moz-background-size: 60% 30%;
+	-ms-background-size: 60% 30%;
+	-o-background-size: 60% 30%;
+	background-size: 60% 30%;
+}
+
+/*单位选择部分*/
+.calc-main .calc-company{
+	font-size: 12px;
+	color: #263950;
+	padding-top: 5px;
+}
+.calc-main .calc-company input[type="radio"]{
+	margin-right: 5px; 
+}
+.calc-main .calc-company p.chooes{
+	line-height: 25px;
+}
+.calc-main .calc-company p{
+	line-height: 24px;
+}
+.calc-main .calc-company p span{
+	display: inline-block;
+	width: 60px;
+	color: #263950;
+}
+
+/*结果部分*/
+.calc-content .calc-result{
+	float: right;
+	width: 380px;
+	margin: 0 18px;
+	border: 1px solid #eaedf1;
+	padding: 12px 10px 20px 10px;
+	background: #f6f6f8;
+}
+.condition-show{
+	height: 84px;
+	background: #fff;
+	overflow-y: auto;
+	border: 1px solid #D8D8D8 ;
+	border-radius: 4px;
+	padding: 8px 12px;
+	font-size: 0;
+}
+.condition-show .condition-flag{
+	display: inline-block;
+	padding: 0 8px;
+	height: 28px;
+	border-radius: 4px;
+	border: 1px solid #d8d8d8;
+	background: #ebebeb;
+	text-decoration: none;
+	line-height: 28px;
+	color: #263950;
+	text-align: center;
+	font-size: 12px;
+	margin:0 14px 10px 0;
+}
+.condition-show span.condition-flag{
+	height: 18px;
+	line-height: 18px;
+	margin: 0 14px 0 0;
+	padding: 0 2px;
+	border: none;
+	background: #d6d6d6;
+}
+.condition-show .condition-flag i{
+	display: inline-block;
+	width: 14px;
+	height: 14px;
+	vertical-align: middle;
+	margin-left: 8px;
+	background: url(../images/flag-del.png) no-repeat center;
+}
+.form-panel{
+	padding-top: 18px;
+}
+.form-panel p{
+	position: relative;
+	font-size: 12px;
+	color: #263950 ;
+	margin-bottom: 16px;
+}
+.form-panel p label{
+	width: 44px;
+	display: inline-block;
+	line-height: 32x;
+}
+.form-panel p input{
+	text-indent: 10px;
+	width: 288px;
+	height: 32px;
+	padding-right: 40px;
+	border: 1px solid #d8d8d8;
+}
+.form-panel p span{
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 40px;
+	height: 36px;
+	text-align: center;
+	line-height: 36px;
+	color: #a2a2a2;
+	font-size: 12px;
+}
+
+.form-panel .result-wrap .result{
+	float: left;
+	font-size: 14px;
+	line-height: 32px;
+}
+.form-panel .result-wrap .result span{
+	margin-left: 12px;
+}
+.form-panel .result-wrap .result .tip-success{
+	color: #1ED35B;
+}
+.form-panel .result-wrap .result .tip-error{
+	color: #FF5655;
+}
+.form-panel .result-wrap .test{
+	float: right;
+	width: 48px;
+	height: 32px;
+	text-align: center;
+	font-size: 14px;
+	line-height: 32px;
+	border: 1px solid #0084e3;
+	color: #0084e3;
+	border-radius: 4px;
+	text-decoration: none;
+}
+
+/*取消与保存部分*/
+.preservation{
+	text-align: right;
+	margin-top: 40px;
+	padding: 0 20px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+}
+.preservation a{
+	display: inline-block;
+	width: 80px;
+	height: 32px;
+	text-align: center;
+	line-height: 32px;
+	font-size: 14px;
+	margin-left: 10px;
+	text-decoration: none;
+	border-radius: 4px;
+}
+.preservation a.cancel{
+	color: #0084E3;
+}
+.preservation a.storage{
+	background: #0084e3;
+	color: #fff;
+}
