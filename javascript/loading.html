@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<title>loading animate</title>
 	<style>
+	/* 方法一 */
 		.dotting { 
 			display: inline-block; 
 			min-width: 20px; 
@@ -40,13 +41,13 @@
 			background-color: currentColor;
 			background-clip: content-box;
 			box-sizing: border-box;
-			animation: dots 4s infinite step-start both;
+			animation: dots 4s infinite step-start;
 			/* IE7 */
 			/* *zoom: expression(this.innerHTML = '...');  */
 		} 
 
 		/* IE8 */
-			.dottinge:before { content: '...'; }  
+			.dotting:before { content: '...'; }  
 			.dotting::before { content: ''; }
 		/* IE9+ */ 
 		:root .dottings { margin-left: 20px; padding-left: 20px; } 
@@ -56,6 +57,40 @@
 			50% { border-right-color: transparent; background-color: transparent; } /* 0个点 */ 
 			75% { border-right-color: transparent; } /* 1个点 */ /* 2个点 */ 
 		}
+	
+	/* 方法二 */
+		.search{
+			text-align: center;
+			width: 140px;
+			height: 40px;
+			background: #1E9DFEFF;
+			border-radius: 4px;
+			line-height: 40px;
+			color: #fff;
+		}
+		.dot-flag{
+			display: inline-block;
+			width: 10px;
+			min-height: 2px;
+			padding-right: 2px;
+			padding-left: 2px;
+			margin-left: 2px;
+			border-left: 2px solid currentColor;
+			border-right: 2px solid currentColor;
+			background-color: currentColor;
+			background-clip: content-box;
+			box-sizing: border-box;
+			animation: dotanim 4s infinite step-start both;
+		}
+		@keyframes dotanim{
+			25%{ border-color: transparent; background-color: transparent;}
+			50%{ border-right-color: transparent; background-color: transparent; }
+			75%{ border-right-color: transparent; }
+		}
+		 /*IE8  放开此项*/
+		/*.dot-flag::before{
+			content: "...";
+		}*/
 	</style>
 </head>
 <body>
@@ -63,5 +98,9 @@
 	<br>
 	<br>
 	<span class="dottings"></span>
+
+	<div class="search">
+		搜索中<span class="dot-flag"></span>
+	</div>
 </body>
 </html>
