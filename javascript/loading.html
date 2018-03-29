@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>loading animate</title>
+	<style>
+		.dotting { 
+			display: inline-block; 
+			min-width: 20px; 
+			min-height: 20px; 
+			box-shadow: 20px 0 currentColor, 60px 0 currentColor, 100px 0 currentColor; /* for IE9+, ..., 3个点 */
+		    animation: dot 4s infinite step-start both;
+		    /* for IE10+, ... */ 
+		    	/* zoom: expression(this.innerHTML = '...'); */
+		}
+		/* for IE9+,FF,CH,OP,SF 占据空间*/ 
+		/* for IE7. 若无需兼容IE7, 此行删除 */
+			/*.dotting:before { content: '...'; } */
+
+		/* for IE8. 若无需兼容IE8, 此行以及下一行删除*/ 
+			/*.dotting::before { content: ''; } */
+
+		/* for IE9+ 覆盖 IE8 */ 
+			/*:root .dotting { margin-right: 8px; }*/
+
+		@keyframes dot { 
+		    25% { box-shadow: none; } 
+		    50% { box-shadow: 20px 0 currentColor; } /* 0个点 */ 
+		    75% { box-shadow: 20px 0 currentColor, 60px 0 currentColor;}/* 1个点 */  /* 2个点 */ 
+		}
+
+		.dottings{
+			display: inline-block;
+			width: 100px;
+			min-height: 20px;
+			padding-right: 20px;
+			background: red;
+			border-left: 20px solid currentColor;
+			border-right: 20px solid currentColor;
+			background-color: currentColor;
+			background-clip: content-box;
+			box-sizing: border-box;
+			animation: dots 4s infinite step-start both;
+			/* IE7 */
+			/* *zoom: expression(this.innerHTML = '...');  */
+		} 
+
+		/* IE8 */
+			.dottinge:before { content: '...'; }  
+			.dotting::before { content: ''; }
+		/* IE9+ */ 
+		:root .dottings { margin-left: 20px; padding-left: 20px; } 
+
+		@keyframes dots { 
+			25% { border-color: transparent; background-color: transparent; } 
+			50% { border-right-color: transparent; background-color: transparent; } /* 0个点 */ 
+			75% { border-right-color: transparent; } /* 1个点 */ /* 2个点 */ 
+		}
+	</style>
+</head>
+<body>
+	<span class="dotting"></span>
+	<br>
+	<br>
+	<span class="dottings"></span>
+</body>
+</html>
