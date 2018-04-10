@@ -1,0 +1,100 @@
+	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>mousewheel</title>
+		<style>
+			#box{
+				width: 100px;
+				height: 100px;
+				background-color: yellowgreen;
+			}
+			.move{
+				width: 100px;
+				height: 100px;
+				background: skyblue;
+				position: absolute;
+				top: 140px;
+				left: 8px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			
+		</div>
+		
+		<div class="move"></div>
+
+		<script>
+			var oBox = document.getElementById('box');
+			oBox.onmousewheel = function(event){
+				var event = event || window.event;
+				if(event.wheelDelta > 0 || event.detail < 0){
+					oBox.style.height = oBox.clientHeight - 10 + 'px';
+				}else{
+					oBox.style.height = oBox.clientHeight + 10 + 'px';
+				}
+
+				event.preventDefault() && event.preventDefault();
+
+				return false;
+			}
+			// oBox.addEvenetListener(oBox,'DOMMouseScroll',oBox.onmousewheel)
+			// 
+			var oMove = document.querySelector('.move');
+			var dir = 0;
+			var speed = 1;
+
+			document.onkeydown = function(ev){
+				var ev = ev || window.event;
+					
+				if(event.shiftKey){
+					speed = 10;
+				}else{
+					speed = 1;
+				}
+
+				dir = event.keyCode;
+			} 
+
+			document.onkeyup = function(){
+				dir = 0;
+			}
+
+			setInterval(function(){
+				switch(dir){
+					case 37 :
+						oMove.style.left = oMove.offsetLeft - speed + "px";
+					break;
+					case 39 :
+						oMove.style.left = oMove.offsetLeft + speed + "px";
+					break;
+					case 38 :
+						oMove.style.top = oMove.offsetTop - speed + "px";
+					break;
+					case 40 :
+						oMove.style.top = oMove.offsetTop + speed + "px";
+					break;
+				}
+			},30);
+
+			/*
+				var ua = window.navigator.userAgent;
+				if(/firefox/i.test(ua)){
+					console.log('你是火狐');
+				}else if(/chrome/i.test(ua)){
+					console.log('你是chrome');
+				}else if(/msie/i.test(ua)){
+					console.log('你是IE');
+				}else if('ActiveXObject' in window){
+					console.log('你的IE');
+				}else if(/safari/i.test(ua)){
+					console.log('你是safari');
+				}
+			*/
+
+
+		</script>
+	</body>
+	</html>
