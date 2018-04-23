@@ -38,8 +38,8 @@ function addEvent(target, type, func){
   */
  function getPage(e){
  	return {
- 		pageX: e.clientX + getScroll().left;
- 		pageY: e.clientY + getScroll().top;
+ 		pageX: e.clientX + getScroll().left,
+ 		pageY: e.clientY + getScroll().top
  	}
  }
  /**
@@ -47,8 +47,8 @@ function addEvent(target, type, func){
   */
  function getScroll(){
  	return {
- 		left: document.documentElement.scrollLeft || document.body.scrollLeft;
- 		top: document.documentElement.scrollTop || document.body.scrollTop;
+ 		left: document.documentElement.scrollLeft || document.body.scrollLeft,
+ 		top: document.documentElement.scrollTop || document.body.scrollTop
  	}
  }
 
@@ -195,4 +195,52 @@ function DoMoveFlex(obj, oTarget, fnCallBack, fnDuring)
 		obj.timer=null;
 		if(fnCallBack)fnCallBack.call(obj);
 	}
+}
+
+
+/* 获取行内样式 */
+function getStyle(obj,attr){
+	return window.currentStyle ? obj.currentStyle[attr] : getComputedStyle(obj,null)[attr]; 
+}
+
+/* 判断节点是否拥有该class类 */
+function hasClass(obj,aClass){
+	var reg = new RegExp("\\b"+aClass+"\\b","i");
+	return reg.test(obj.className);
+}
+
+/* 添加class类 */
+function addClass(obj,aClass){
+	if(!hasClass(obj,aClass)){
+		obj.className += "" + aClass;
+	}
+}
+
+/* 删除class类 */
+function removeClass(obj,aClass){
+	var reg = new RegExp("\\b" + aClass + "\\b","i");
+	obj.className = obj.className.replace(reg,"");
+}
+
+/* 删除或添加class类 */
+function toggleClass(obj,aClass){
+	if(hasClass(obj,aClass)){
+		removeClass(obj,aClass);
+	}else{
+		addClass(obj,aClass);
+	}
+}
+
+/* 获取带class的节点(兼容写法) */
+function getByClass(aParent,sClass){
+	var aEle = aParent.getElementsByTagName('*');
+	var reg = new RegExp("\\b" + sClass + "\\b","i");
+	var result = [];
+
+	for(var i = 0; i < aEle.length; i++){
+		if(reg.test(aEle[i].className)){
+			result.push(aEle[i]);
+		}
+	}
+	return result;
 }

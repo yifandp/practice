@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>slide</title>
+	<style>
+		*{ margin: 0; padding: 0; }
+		.slide {
+			position: relative;
+			width: 520px;
+			height: 300px;
+			padding: 10px 0;
+			background: greenyellow;
+			margin: 50px auto;
+			border-radius: 4px;
+			overflow: hidden;
+		}
+		.slide-wrap{
+			list-style: none;
+			position: absolute;
+		}
+		.slide-wrap .item{
+			width: 500px;
+			height: 300px;
+			margin: 0 10px;
+			float: left;
+			font-size: 40px;
+			color: #fff;
+			line-height: 300px;
+			font-weight: 700;
+			text-align: center;
+		}
+
+		.btn{
+			position: absolute;
+			left: 0;
+			width: 100%;
+			bottom: 20px;
+			font-size: 0;
+			text-align: center;
+		}
+		.btn a{
+			display: inline-block;
+			width: 12px;
+			height: 12px;
+			border-radius: 6px;
+			background: #8E9292FF;
+			margin: 0 4px;
+			transition: .2s width linear;
+		}
+		.btn a.active{
+			/*background: #DFF3FE7F;*/
+			opacity: .5;
+			background: #B3FF21FF;
+			width: 50px;
+			border-radius: 6px;
+		}
+		.dir{
+			position: absolute;
+			top: 120px;
+			left: 0;
+			width: 100%;
+		}
+		.dir a{
+			width: 40px;
+			height: 60px;
+			background: rgba(0,0,0,.2);
+			color: white;
+			font: 24px/60px 'simsun';
+			text-align: center;
+			text-decoration: none;
+		}
+		.dir a:hover{
+			background: rgba(0,0,0,.4);
+		}
+		.dir .prev{
+			float: left;
+		}
+		.dir .next{
+			float: right;
+		}
+	</style>
+</head>
+<body>
+	<div class="slide">
+		<ul class="slide-wrap">
+			<li class="item" style="background: #1BD0D5FF" ><img src="http://img1.imgtn.bdimg.com/it/u=962746449,769915162&fm=27&gp=0.jpg" alt="创意图片"></li>
+			<li class="item" style="background: #1DD111FF" ><img src="http://static.zhulong.com/database/news/2011/06/29/132675312.jpg" alt="创意图片"></li>
+			<li class="item" style="background: #CDCC0EFF" ><img src="http://pic.ijjnews.com/0/10/02/90/10029007_971104.jpg" alt="创意图片"></li>
+			<li class="item" style="background: #CC000DFF" ><img src="http://www.fevte.com/data/attachment/portal/201204/09/3207201204091448336.jpg" alt="创意图片"></li>
+			<li class="item" style="background: #C600CBFF" ><img src="http://www.fevte.com/data/attachment/portal/201203/11/155532012031102532633.jpg" alt="创意图片"></li>
+			<li class="item" style="background: #1BD0D5FF" ><img src="http://www.51zsjc.com/news/Upfiles/reload/1217583356589_000.jpg" alt="创意图片"></li>
+			<li class="item" style="background: #1DD111FF" ><img src="http://img5.imgtn.bdimg.com/it/u=2549172056,1236158031&fm=27&gp=0.jpg" alt="创意图片"></li>
+			<li class="item" style="background: #CDCC0EFF" ><img src="http://img3.imgtn.bdimg.com/it/u=866355178,4018852401&fm=27&gp=0.jpg" alt="创意图片"></li>
+			<li class="item" style="background: #CC000DFF" ><img src="http://img5.imgtn.bdimg.com/it/u=2340206204,3542913379&fm=27&gp=0.jpg" alt="创意图片"></li>
+			<li class="item" style="background: #C600CBFF" ><img src="http://img3.imgtn.bdimg.com/it/u=3253479335,1467904172&fm=27&gp=0.jpg" alt="创意图片"></li>
+		</ul>
+		<div class="btn"></div>
+		<div class="dir">
+			<a class="prev" href="javascript:;">&lt;</a>
+			<a class="next" href="javascript:;">&gt;</a>
+		</div>
+	</div>
+
+	<script>
+		window.onload = function(){
+			var oSlide = document.querySelector('.slide');
+			var slideBox = document.querySelector('.slide-wrap');
+			// 克隆第一张图片所在的节点
+			var cloneItem = slideBox.children[0].cloneNode(true);
+			// 添加到当前父级内的末尾
+				slideBox.appendChild(cloneItem);
+				// console.log(getByClass(slideBox,'item'));
+			var aItem = slideBox.children;
+			var oBtn = document.querySelector('.btn');
+			// 根据轮播图的数量生成交互点数量
+			for(var n = 0; n < aItem.length - 1; n++){
+				var oA = document.createElement('a');
+				oA.href = 'javascript:;';
+				oBtn.appendChild(oA);
+			}
+			var aBtn = oBtn.children;
+			// 交互点的样式初始化
+			aBtn[0].className = 'active';
+
+			var oDirBtn = document.querySelectorAll('.dir a'); 
+			slideBox.style.width = ((aItem[0].offsetWidth) + 20) * aItem.length + 'px';
+
+			var iNow = 0;
+			var timer = null;
+
+			for(var i = 0; i < aBtn.length; i++){
+				aBtn[i].index = i;
+				aBtn[i].onclick = function(){
+					for(var i = 0; i < aBtn.length; i++){
+						removeClass(aBtn[i],'active');
+					}
+					
+					addClass(aBtn[this.index],'active');
+					move(slideBox,{'left': -((aItem[0].offsetWidth)+20) * this.index});
+					iNow = this.index;
+				}
+			}
+
+			timer = setInterval(function(){
+				iNow++;
+				slideMove();
+			},2500);
+
+			oSlide.onmouseover = function(){
+				clearInterval(timer);
+			}
+			oSlide.onmouseout = function(){
+				timer = setInterval(function(){
+					iNow++;
+					slideMove();
+				},2500);
+			}
+
+			oDirBtn[0].onclick = function(){
+				iNow--;
+				slideMove();
+			}
+
+			oDirBtn[1].onclick = function(){
+				iNow++;
+				slideMove();
+			}
+
+			function slideMove(){
+
+				if(iNow < 0){
+					iNow = aItem.length - 2;
+					slideBox.style.left = -((aItem[0].offsetWidth)+20) * (aItem.length - 1) + 'px';
+				}
+
+				if(iNow > aItem.length-1){
+					iNow = 1;
+					slideBox.style.left = 0;
+				}
+
+				for(var i = 0; i < aBtn.length; i++){
+					removeClass(aBtn[i],'active');
+				}
+				if(iNow == aItem.length-1){
+					addClass(aBtn[0],'active');
+				}else{
+					addClass(aBtn[iNow],'active');
+				}
+
+				move(slideBox,{'left': -((aItem[0].offsetWidth)+20) * iNow});
+			}
+
+		}
+
+
+		//运动框架
+		function move(obj,json,callback){
+			clearInterval(obj.time);
+			obj.time = setInterval(function(){
+
+				var flag = true;
+
+				for(var attr in json){
+					var iCurr = 0;
+					if(attr == 'opacity'){
+						if(Math.round(parseFloat(getStyle(obj,attr))*100) == 0){
+							iCurr = Math.round(parseFloat(getStyle(obj,attr))*100);
+						}else{
+							iCurr = Math.round(parseFloat(getStyle(obj,attr))*100) || 100;
+						}
+					}else{
+						iCurr = parseFloat(getStyle(obj,attr)) || 0;
+					}
+
+					var iSpeed = (json[attr] - iCurr) / 8;
+					iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+
+					if(iCurr != json[attr]){
+						flag = false;
+					}
+
+					if(attr == 'opacity'){
+						obj.style.filter = 'alpha(opacity='+(iCurr + iSpeed)+')';
+						obj.style.opacity = ( iCurr + iSpeed ) / 100;
+					}else{
+						obj.style[attr] = iCurr + iSpeed + 'px';
+					}
+
+				}
+
+				if(flag){
+					if(callback){
+						callback.call(obj);
+					}
+				}
+
+			},30);
+		}
+
+		function getStyle(obj,attr){
+			return window.currentStyle ? obj.currentStyle[attr] : getComputedStyle(obj,null)[attr]; 
+		}
+
+		function hasClass(obj,aClass){
+			var reg = new RegExp("\\b"+aClass+"\\b","i");
+			return reg.test(obj.className);
+		}
+
+		function addClass(obj,aClass){
+			if(!hasClass(obj,aClass)){
+				obj.className += "" + aClass;
+			}
+		}
+
+		function removeClass(obj,aClass){
+			var reg = new RegExp("\\b" + aClass + "\\b","i");
+			obj.className = obj.className.replace(reg,"");
+		}
+
+		function toggleClass(obj,aClass){
+			if(hasClass(obj,aClass)){
+				removeClass(obj,aClass);
+			}else{
+				addClass(obj,aClass);
+			}
+		}
+
+		function getByClass(aParent,sClass){
+			var aEle = aParent.getElementsByTagName('*');
+			var reg = new RegExp("\\b" + sClass + "\\b","i");
+			var result = [];
+
+			for(var i = 0; i < aEle.length; i++){
+				if(reg.test(aEle[i].className)){
+					result.push(aEle[i]);
+				}
+			}
+			return result;
+		}
+	</script>
+</body>
+</html>
