@@ -137,7 +137,19 @@
 	* 只向外部暴露n个方法的对象或函数
 	* 模块的使用者，只需要通过模块暴露的对象调用方法来实现对应的功能
 
-# 类的继承
+## 内存溢出与内存泄漏
+1. 内存溢出
+	* 一种程序运行出现的错误
+	* 当程序运行的内存超过了剩余的内存时，就抛出内存溢出的错误
+2. 内存泄漏
+	* 占用的内存没有及时释放
+	* 内存泄漏累积多了就容易导致内存以溢出
+	* 常见的内存泄漏：
+		* 意外的全局变量
+		* 没有及时清理的计时器或回调函数 
+		* 闭包
+
+# 类的继承(组合)
 ```
 	function Person(name,age){
 		this.name = name;
@@ -159,4 +171,51 @@
 		this.price = price;
 	}
 
+```
+* 原型链继承:(得到方法)
+``` 
+	function Parent(){
+		Parent.prototype.test = function(){}
+	}
+	function Child(){}
+	Child.prototype = new Parent();
+	Child.prototype.constructor = Child;
+	var child = new Child(); // 有test()方法
+```
+* 借用构造函数:(得到属性）
+```
+	function Parent(xxx){this.xxx = xxx}
+	Parent.prototype.test = function(){};
+	function Child(xxx,yyy){
+		Perent.call(this,xxx);// 借用构造函数
+	}
+
+	var child = new Child('a','b'); child.xxx a为xxx  但child 没有test()方法
+```
+* 组合(得到属性和方法)
+```
+function Parent(xxx){
+	this.xxx = xxx;
+}
+Parent.prototype.test = function(){}
+
+function Child(xxx,yyy){
+	Parent.call(this,xxx); // this.Parent(xxx)
+	this.yyy = yyy;
+}
+Child.prototype = new Parent();
+Child.prototype.constructor = Child;
+Child.prototype.test2 = function(){}
+```
+
+1. new 一个对象背后所做的事：
+	* 创建了一个空对象
+	* 给对象设置了__proto__,值为构造函数对象的prototype的属性值
+	* 执行构造函数体（给对象添加属性/方法）
+
+```
+// 1 1 2 3 5 8   f(n) = f(n-1) + f(n-2)
+ function fibonacci(n){
+ 	return n<=2? 1: fibonacci(n-1) + fibonacci(n-2) // 递归
+ }
 ```
