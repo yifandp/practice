@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    function getA([a,b,c,...d]) {
+        console.log(a, b, c, d);
+    }
+    getA([1,2,3,4,5]);//打印出了 1,2,3,[4,5]
+
+    function getB({name,age}) {
+        console.log(name, age);
+    }
+    getB({name:"Cyan",age:19});//打印出了："Cyan" 19
+
+    //有默认值的情况
+    function getC({name="Aqing",age=20}) {
+        console.log(name, age);
+    }
+    getC({name:"Cyan",age:19});
+    //但是若一个参数都不传
+    getC();
+    //报错：Cannot destructure property `name` of 'undefined' or 'null'.没有实参会报错
+</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    //Object() 将参数变成对象
+    console.log(Object(1));//Number {1}
+    console.log(Object(true));//Boolean {true}
+
+    console.dir(Object);//打印查看Object的方法
+
+    //Object.is 判断两个值是否相等
+    //在用===判断时，NaN跟NaN都不相等  -0 === 0 得true
+    //除了以上情况，其他情况此方法是和 === 判断一致的
+    console.log(Object.is(NaN, NaN));//true
+    console.log(Object.is(-0, 0));//false
+
+    //Object.assign  合并对象
+    //Object.assign(obj1,obj2) 将obj2合并到obj2上，返回obj1
+    let obj1 = {name:"Cyan"};
+    let obj2 = {age:19};
+    console.log(Object.assign(obj1, obj2));//{name: "Cyan", age: 19}
+    console.log(obj1);//{name: "Cyan", age: 19}
+    console.log(obj2);//{age: 19} 说明返回的obj1是被改变了的
+
+    //ES7中提供了对象的扩展运算符...
+    let school = {...obj1,...obj2};
+    console.log(school);//{name: "Cyan", age: 19}
+
+    // Object.getOwnPropertyDescriptor  获取一个对象中某个属性的描述
+    console.log(Object.getOwnPropertyDescriptor("123", "length"));
+    /*
+    configurable:false   是否可配置(删除)
+    enumerable:false     是否可枚举
+    value:3              值
+    writable:false       是否可修改   这里说明字符串中的length是不能修改的 所以字符串没有修改它长度的方法
+    */
+
+
+    // Object.keys  返回值是一个数组  里面存放[所有可枚举的属性]
+    console.log(Object.keys(school));//["name", "age"]
+
+    // Object.values  返回值是一个数组 里面存放[所以可枚举属性的值]
+    console.log(Object.values(school));//["Cyan", 19]
+
+    // Object.entries  返回值是一个数组 数组[每一项也是一个数组[键,值]]
+    console.log(Object.entries(school));//[Array(2), Array(2)]  展开后0:(2) ["name", "Cyan"]   1:(2) ["age", 19]
+
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    //对目标对象默认操作的拦截/改写 有时候我们也会称Proxy为代理器
+    //new Proxy({目标对象target},{拦截的方法})
+    let obj = {name:"Cyan",age:"19"};
+    //让proxy1代理了obj, 需要通过proxy1 去操作代理的obj
+    let proxy1 = new Proxy(obj,{
+        get(target,key,proxy){//根据打印的arguments,发现：默认传入三个参数 target key proxy
+            //target就是目标(原)对象
+            //key是属性名
+            //proxy是new出的代理实例
+            // console.log(arguments);
+            console.log("get拦截");
+            // return "您好";//return什么 获取的就是什么
+            return target[key];
+
+        }
+    });
+    //get 只要有属性值获取操作 就会触发get方法 例如：proxy1.name
+    // console.log(proxy1.name);//"您好"  在这之前打印了一个"get拦截" 说明获取操作成功调用方法 打印了1
+    console.log(obj.name);//输出的依然是Cyan
+    console.log(proxy1.name);//"Cyan" 之前因为调用方法输出了"get拦截"
+</script>
+</body>
+</html>

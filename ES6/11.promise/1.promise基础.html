@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    //实例一开始的状态就是pending状态，一旦new后，立马执行函数
+    //执行顺序 new Promise中的代码 ===>  当前队列中的同步代码 ===> then(异步)里面的回调函数
+    let pro1 = new Promise((resolve,reject)=>{
+        //resolve 参数都是函数
+        //reject 该参数是函数
+        //当前两个函数只能执行一个，要么成功要么失败
+        //如果在new Promise中有错误，那么会直接执行then中的第二个回调函数，并且把错误信息传给函数,把下方的注释代码去掉注释，可以看到控制台的效果
+        // let; //使报错代码
+        resolve("success");//成功Fulfilled
+        reject("error");//失败Rejected
+    });
+
+
+    //then方法有两个回调函数
+    pro1.then((res)=>{
+        //resolve 成功的回调
+        console.log(res);
+    },(e)=>{
+        //失败的回调
+        console.log(e);
+    });//成功打印出了success，如果我们把resolve函数注释掉，那么就会打印e
+
+    console.log("因为then方法是异步的，所以不会等待，跳过直接进行这里的代码,所以这里先执行");
+</script>
+</body>
+</html>

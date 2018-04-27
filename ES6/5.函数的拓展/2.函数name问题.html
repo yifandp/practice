@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    function fn() {}
+    console.log(fn.name);//fn
+    //匿名函数
+    console.log((function () {
+    }).name);//""
+
+    //特殊情况
+    //1.通过bind方法得到一个新的函数 name是 "bound 原来函数的名字"
+    let fn1 = fn.bind(null);
+    console.log(fn1.name);//"bound fn"
+
+    //2.通过构造函数方式创建一个函数 它的名字是"anonymous"
+    // new Function("形参","函数体")
+    // new Function("函数体")
+    // function fn(形参) {函数体}
+    let fn2 = new Function("x,y","console.log(x,y);return x+y;");
+    console.log(fn2(10, 100));//先执行 打印了10 100 然后打印了110
+    console.log(fn2.name);//anonymous
+
+    //如何将下面的JSON字符串变为JSON对象 不使用JSON方法 也不使用 eval方法
+    let str = '[{"name":"Aqing"},{"age":19}]';
+
+    let arr = (new Function("return"+str))();//只写一个参数就是函数体  字符串可以拼接 "return [{"name":"Aqing"},{"age":19}]"
+    console.log(arr);// [{…}, {…}]
+</script>
+</body>
+</html>

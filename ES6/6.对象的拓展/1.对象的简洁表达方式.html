@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    let name = "Cyan",age = 19;
+    let school = {name,age};
+    //就相当于let school = {name:name,age:age};
+
+    //如果属性是函数的时候
+    let str = "name";//属性名都是字符串
+    let obj = {
+        fn(){},
+        //相当于fn:function(){}
+        //属性名是字符串,属性名使用[] 里面可以使用变量
+        [str]:name,//如果想让一个变量当做属性名
+        ["my"+str]:name//当然可以在[]中拼接字符串
+    }
+    //引用的时候  obj[str]  其中写法与这个用法有相似性
+    console.log(obj[str]);//"Cyan" 因为 name之前有let声明定义过
+</script>
+</body>
+</html>

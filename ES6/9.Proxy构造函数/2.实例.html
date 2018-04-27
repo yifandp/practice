@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    //set(target,propKey,value,receiver)
+    let obj = {name:"Cyan"};
+    let proxy1 = new Proxy(obj,{
+        get(target,propKey,receiver){
+            return target[propKey];
+        },
+        set(target,propKey,value,receiver){
+            console.log("设置");
+            //propKey:设置的属性名
+            //value:设置的属性值
+            target[propKey] = value;
+            return true;
+        }
+    });
+    proxy1.age = 10;
+    console.log(obj);
+
+
+    //日后详解 这里困惑较多
+</script>
+</body>
+</html>

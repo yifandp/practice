@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    //console.dir(Promise) 查看Promise的方法
+
+    //Promise.all([每一项都是Promise对象,如果不是Promise对象默认转为Promise])
+    //数组中每一项都必须成功状态，才会执行Promise.all的成功的回调函数
+    //默认将每一个项的参数放在数组中传回给回调函数，只要一个有错误，就会走报错的回调函数(将第一个错误参数传给回调，之后的都不会再执行)
+    let p1 = new Promise((resolve, reject) => {
+        resolve("OK");
+    });
+
+    let p2 = new Promise((resolve, reject) => {
+        // resolve("OK");
+        reject("p2Error");
+    });
+
+    let p3 = new Promise((resolve, reject) => {
+        resolve("OK");
+    });
+
+    let pAll = Promise.all([p1,p2,p3]);
+    console.log(pAll);//发现他也是Promise对象
+    pAll.then((res)=>{
+        console.log(res);//如果三个对象都是resolve成功的话，那么这里打印["OK", "OK", "OK"]
+    }).catch((e)=>{
+        console.log(e);//将p2改为 reject("p2Error") ，那么只打印"p2Error" 因为一旦有一个错误的，那么立马执行catch
+    })
+</script>
+</body>
+</html>

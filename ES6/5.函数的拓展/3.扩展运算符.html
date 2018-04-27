@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul id="list">
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+<script>
+    //扩展运算符 ...
+    //1.将非数组变成数组
+    //2.将数组变成非数组
+
+    //将类数组变为数组(具有length属性)
+    let str = "123";
+    console.log([...str]);//["1", "2", "3"]
+    console.log([...list.getElementsByTagName("li")]);//[li, li, li]
+
+    function fn() {
+        console.log([...arguments]);
+    }
+    fn(1,2,3,4);//[1, 2, 3, 4]
+
+    //合并数组
+    let arr1 = [1,2,3,4];
+    let arr2 = [5,6,7,8];
+    console.log(arr1.concat(arr2));//[1, 2, 3, 4, 5, 6, 7, 8]
+    console.log([...arr1, ...arr2]);//[1, 2, 3, 4, 5, 6, 7, 8]
+
+    //求数组最大值,Math.max方法是不能直接传数组的，那我们就可以利用...方法来把它变成非数组
+    //之前是想办法将它变为一个一个值，比如利用apply的方法将数组的值一个个传入
+    let ary = [1,23,12,45,242,132];
+    console.log(Math.max(...ary));
+
+    //把ary的每一项作为函数参数一项项传入
+    function fn1() {
+
+    }
+    fn1(...ary);
+</script>
+</body>
+</html>

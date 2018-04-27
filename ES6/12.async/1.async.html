@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    //async函数默认返回一个promise对象
+    async function getA() {
+        //return出的内容就是成功回调的参数
+        //如果这里出现错误，就会被catch捕获到
+        // throw new Error("出错了");
+        return "Cyan";
+    }
+
+    getA().then((res)=>{
+        console.log(res);//打印出了"Cyan"
+    }).catch((e)=>{
+        console.log(e);//如果getA函数抛错，那么不会打印"Cyan"，而是会打印错误
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    let obj = {
+        name:"Cyan"
+    };
+    console.log(obj.name);//我们可以这样来获取值  "Cyan"
+    console.log(obj.name = "Aqing");//也可以来设置值  "Aqing"
+
+    //那么我们可以获取的时候 设置的时候 都有函数去触发
+    let obj2 = {
+        _name:"Cyan",
+        get name(){
+            //只要通过obj获取name属性就会触发这个函数
+            //可以通过return 返回值
+            console.log(1);
+            return this._name;
+        },
+        set name(val){
+            //只要通过obj给name属性设置值就会触发set函数
+            console.log(2);
+            //val：设置的值
+            this._name = val;
+        }
+    };
+    console.log(obj2.name);//先打印了1 因为触发了get方法  然后打印了Cyan return什么就打印什么
+    obj2.name= "Aqing";//打印了2 这里触发了set方法
+    console.log(obj2.name);//触发了get 先打印1 再打印_name的值 也就是 Aqing
+
+    /*补充说明：
+       当你给一个属性定义setter或者getter，或者两者都有时，这个属性会被定义为“访问描述符”。
+       对于访问描述符来说，Javascript会忽略他们的value和writable特性。取而代之的是set和get函数。
+       注意，get属性只有在调用它掌控的属性的时候，才会被调用该get方法的。
+       get: 在读取属性时，调用的函数。在读取属性时调用的函数。只指定get则表示属性为只读属性。默认值为undefined。
+       set: 在写入属性时调用的函数。在写入属性时调用的函数。只指定set则表示属性为只写属性。默认值为undefined。
+    */
+</script>
+</body>
+</html>

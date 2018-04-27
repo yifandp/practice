@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //使用数组解构赋值的形式，如果等号右边不是一个数组默认将其转换为类数组，里面包含的是字符串(类似数组的对象，必须有一个length属性)
+    let [x,y] = "123";
+    console.log(x, y);//也可以拿到，“1”和“2”，都是字符串
+
+    // let [m,n] = 1;
+    // console.log(m, n);//报错：1 is not iterable，1没有length属性
+
+    //使用对象解构赋值的形式 如果等号右边不是对象 默认转为对象 再进行结构赋值
+    //因此 我们可以利用解构赋值来拿到一些属性的值
+    let {a} = 1;
+    console.log(a);//打印undefined，没有报错，因为默认把1转为一个对象
+    console.log(Object(1));//把1转为对象后，可以发现，它有一个属性名：__proto__
+    //因此我们这样赋值
+    let{__proto__:a1} = 1;//等号右边的内容相当于一个对象，有一个__proto__属性名
+    console.log(a1);//这样就拿到了__proto__的值
+
+    let {length:b} = "1234";
+    console.log(Object("1234"));//发现转为对象后，有一个length属性，那我们就这样来取值
+    console.log(b);//输出b，我们就拿出了length的值
+</script>
+</body>
+</html>

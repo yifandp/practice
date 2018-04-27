@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    //如果创建一个类 如此命名
+    let A = class {
+        constructor(){
+            console.log(A.name);
+        }
+    };
+
+    new A();//"A"
+
+    //如果创建一个类 如此命名
+    let B = class BB {
+        //BB 只能在类里面使用 类的name都是BB
+        constructor(){
+            console.log(BB.name);
+            console.log(B.name);
+        }
+        //在这里写原型上的方法
+        getB(){
+            console.log(BB.name);
+        }
+    };
+    // new B();// "BB" "BB"
+    // new BB();//报错：BB is not defined  结合前一个来看 我们可以在constructor里面啊使用BB这个名字 但是在外面不能使用BB
+
+    let a = new B();//这一步应该是会打印两个"BB"的
+    a.getB();//BB  结合前面的测试代码，说明BB这个name只能在类的里面使用 不能再外面使用
+</script>
+</body>
+</html>

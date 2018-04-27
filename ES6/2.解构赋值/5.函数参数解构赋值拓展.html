@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    function getC1({name="Aqing",age=20}={}) {
+        console.log(name, age);
+    }
+    function getC2({name,age}={name:"Aqing",age:20}) {
+        console.log(name, age);
+    }
+    getC1();
+    getC2();//C1和C2都输出了Aqing 20
+
+    getC1({});//Aqing 20
+    getC2({});//undefined undefined
+
+    //要是没有传入参数，那么我们可以采用以上两种方式来避免报错
+
+    //在第二种情况，赋空对象的情况下，C1因为参数本身存在空对象赋值给形参的情况，所以还是会打印出内容
+    //C2则是将参数变为了空对象赋值给了形参，所以会变为undefined
+
+</script>
+</body>
+</html>

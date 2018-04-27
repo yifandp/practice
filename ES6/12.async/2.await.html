@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    //await
+
+    let p = new Promise((resolve, reject) =>{
+        resolve("Cyan");
+    });
+    async function getA() {
+        //await后跟Promise实例，如果不是也会默认转为Promise实例
+        //直接让promise实例的回调执行 返回执行时的参数
+        // console.log(await p);//"Cyan"
+        //await是一个语法糖 不用通过then就可以直接拿到resolve或者reject的参数
+        let a = await p;
+        //等await后面的异步完成之后再去执行后面的代码
+        console.log(a);
+
+    }
+    getA().then((res)=>{
+        console.log(res);//这里是undefined是因为没有return
+    }).catch((e)=>{
+        console.log(e);
+    })
+</script>
+</body>
+</html>

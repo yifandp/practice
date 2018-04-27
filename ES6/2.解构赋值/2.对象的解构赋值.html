@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    //如果变量名和属性名一样的话 可以直接省略写法
+    // let {name:name,age:age}={name:"Cyan",age:19};
+    //等价于
+    // let {name,age} = {name:"Aqing",age:20};
+    // console.log(name);
+
+    //对象中也有默认值的情况,若赋值的是undefined，那么还是采用默认值
+    // let {name,age=10} = {name:"cyan",age:20};
+    // console.log(age);
+
+    //嵌套(数组合对象的混合情况)
+    let {name,age=10,list:[a1,a2,a3,a4]} = {name:"cyan",age:20,list:["js","node","vue","react"]};
+    console.log(name,age,a1,a2,a3,a4);//此时要拿数组中的内容应该直接拿变量名即可
+    // console.log(list[a1]);//这样会提示 list没有定义
+
+    //我们还可以这样定义对象
+    let x1,x2;
+    ({x1,x2} = {x1:1,x2:2});
+    console.log(x1, x2);//拿括号包起来是因为块级作用域
+</script>
+</body>
+</html>

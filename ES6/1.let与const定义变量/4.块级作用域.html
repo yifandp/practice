@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul id="list">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+</ul>
+<script>
+    //{}：一个{}就是一个块级作用域
+    //块级作用域下var和function声明的变量依然是全局的
+
+    //块级作用域下let和const声明的变量是私有的，在外面是获取不到的
+
+    //{}如果想表示一个对象，不可以放在行首
+    {
+        var a = 0;
+        function getA() {
+            console.log("ok");
+        }
+        let b = 1;
+    }
+    console.log(a);//能够成功打印
+    getA();//成功执行
+    //console.log(b);//报错：b is not defined
+
+    //for循环，if判断，创建对象的时候都会产生{}
+    // {name:"Cyan",age:19}//这样写会报错，当做块级作用域
+    //  let obj = {name:"Cyan",age:19};
+    // ({name:"Aqing",age:20})//这两种方式都可以
+    //要表示一个对象千万不要放在行首
+
+    // console.log(eval('{name:"Aqing",age:20}'));//这样也会报错，因为eval会直接把字符串转换成一个{}，所以我们拿括号包起来
+    console.log(eval('({name:"Cyan",age:20})'));
+    eval('var o = {name:"Aqing",age:20}');
+    console.log(o);
+
+    //if(){}  中的function  只会提前声明，不会定义，当if判断条件成立的时候，先给函数赋值，代码再执行
+    if(1){
+        var A = 1;
+        function getAA() {
+
+        }
+    }
+    console.log(A);
+    console.log(getAA);
+
+    //for循环
+    let list = document.getElementById('list').getElementsByTagName("li");
+    // for(var i=0;i<list.length;i++){
+    //     list[i].index=i;//加一个自定义属性用来存i的值
+    //     list[i].onclick=function () {
+    //         alert(this.index);
+    //     }
+    // }
+    // console.log(i);//i是全局的
+
+    for(let i=0;i<list.length;i++){
+        list[i].index=i;//加一个自定义属性用来存i的值
+        list[i].onclick=function () {
+            alert(this.index);
+        }
+    }
+    // console.log(i);//现在全局已经拿不到i了，let声明的变量，在块级都是私有的
+
+</script>
+</body>
+</html>

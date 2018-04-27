@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    let arr = [1,2,3,4];
+    // let x = arr[0];
+    // let y = arr[1];
+    // let m = arr[2];
+    // let n = arr[3];//我们要获取到数组中的每个值，要么像这样取，要么用循环
+
+    //而ES6中提供了解构赋值
+    let [x,y,m,n] = arr;
+    console.log(x, y, m, n);//顺序打印出了arr中的每个值
+
+    //若数组长度不够
+    let [i,j,k] = [1,2];
+    console.log(i, j, k);//k被打印出undefined
+
+    //若数组长度超过
+    let [q,w,e] = [1,2,3,4];
+    console.log(q, w, e);//纸打印出前面的三个
+
+    //有默认值的情况  只有后面结构赋值是undefined的时候，才会采用默认值，即x2位10，而不是被赋值为undefined
+    let [x1,x2=10] = [1,2];
+    console.log(x1, x2);
+    //我们来看看默认值会不会先执行再被结构赋值
+    let [m1,m2=(function () {console.log("哈哈")();return 10;})] = [1,2];//我们让m2的默认值为一个自执行函数，如果是先执行默认值再赋值，会打印“哈哈”，再让m2等于返回的值10
+    console.log(m1, m2);//结果只打印了1,2 说明没有使用默认值
+    //省略赋值，把位置空出来
+    let[,,m3] = [1,2,3];
+    console.log(m3);//打印3
+
+    //不定参数赋值  若我想将后三项全部拿到？
+    //将后面的项放在一个数组中赋值给y3，即y3=[3,4,5]
+    let[y1,y2,...y3] = [1,2,3,4,5];
+    console.log(y3);//打印一个数组
+</script>
+</body>
+</html>
