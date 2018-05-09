@@ -27,7 +27,7 @@
         console.log(str.includes("a", 2));//false 从索引2开始也就是第三个后查找"a"，是不存在的
         console.log(str.includes("g", "2"));//true 第二个参数即使不是数字也会默认转为数字
         console.log(str.includes("a", null));//true null默认转为0
-    
+
         //2.startsWith endsWith
         //startsWith判断字符串是不是以指定字符作为开头
         //startsWith("指定字符"，开始查找的位置(可选))
@@ -35,7 +35,7 @@
         //endsWith("指定字符"，num(可选))  这里的num指的是：从前num个查看
         console.log(str.startsWith("a"));//true
         console.log(str.startsWith("a", 3));//false 索引3处应该是以d开头
-    
+
         console.log(str.endsWith("c"));//false
         console.log(str.endsWith("c", 3));//true 前三个字符的结尾是c
     ```
@@ -43,4 +43,3 @@
 - 例如JS文件：建议使用Webstrom直接在控制台输出查看效果
 
 > 部分测试代码运行结果可能与注释发生了冲突，错误原因基本是前后代码的运行对数组或者对象进行修改造成的，注释其他部分只运行该段即可
-> 部分内容还没有弄懂，所以还是会进行一段时间的短期维护  2018-4-21

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			list-style: none;
+		}
+		.warp{
+			width: 100%;
+			overflow: hidden;
+		}
+		.img-warp{
+			width: 500%;
+			height: 400px;
+			animation: banner 10s linear infinite;
+			/* banner 5 张图  10s一圈  停顿1.5s  每张运动0.5s */
+		}
+		.img-warp li{
+			width: 20%;
+			float: left;
+			font-size: 40px;
+			line-height: 400px;
+			color: #666;
+			text-align: center;
+		}
+		
+		/* banner 5 张图  10s一圈  停顿1.5s  每张运动0.5s （重点）*/
+		@keyframes banner {
+			0%{ transform : translate(0,0); }
+			15%{ transform : translate(0,0);}
+			
+			/* 第一次运动 */
+			20%{ transform : translate(-20%,0); }
+			35%{ transform : translate(-20%,0); }
+			
+			/* 第二次运动 */
+			40%{ transform : translate(-40%,0); }
+			55%{ transform : translate(-40%,0); }
+			
+			/* 第三次运动 */
+			60%{ transform : translate(-60%,0); }
+			75%{ transform : translate(-60%,0); }
+			
+			/* 第四次运动 */
+			80%{ transform : translate(-80%,0); }
+			95%{ transform : translate(-80%,0); }
+
+			100%{ transform: translate(0,0); }
+		}
+	</style>
+</head>
+<body>
+	<div class="warp">
+		<ul class="img-warp">
+			<li style="background: #64FF6DFF">1</li>
+		 	<li style="background: #FFFA5EFF">2</li>
+		 	<li style="background: #FB424DFF">3</li>
+		 	<li style="background: #F547FEFF">4</li>
+		 	<li style="background: #4A3DFEFF">5</li>	
+		</ul>
+	</div>
+</body>
+</html>
