@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .move{
+            width: 960px;
+            height: 300px;
+            margin: 50px auto;
+        }
+        .move ul{
+            overflow: hidden;
+        }
+        .move ul li {
+            list-style: none;
+            width: 160px;
+            height: 300px;
+            float: left;
+            transition: width .5s ease-in-out;
+        }
+        .move ul:hover li{
+            width: 100px;
+        }
+        .move ul li:hover{
+            width: 460px;
+        }
+
+        /* nav */
+        .nav {
+            width: 400px;
+            height: 30px;
+            background: #2b2b2b;
+            margin: 100px auto;
+            perspective: 1000px;
+        }
+        .nav > li{
+            list-style: none;
+            float: left;
+            width: 120px;
+            height: 30px;
+            background: #4e4e4e;
+            color: #f7f7f7;
+            text-align: center;
+            line-height: 30px;
+            margin-left: 10px;
+        }
+        .sub{
+            transform-style: preserve-3d;
+        }
+        .sub li{
+            list-style: none;
+            width: 100%;
+            height: 30px;
+            font-size: 14px;
+            text-align: center;
+            background: #409eff;
+            color: #f7f7f7;
+            transform: rotateY(180deg);
+            transition: all 1s linear;
+            opacity: 0;
+        }
+
+        .nav > li:hover .sub li{
+            transform: none;
+            opacity: 1;
+        }
+
+        .nav > li:hover .sub li:nth-child(1){
+            transition-delay: 0ms;
+        }
+        .nav > li:hover .sub li:nth-child(2){
+            transition-delay: 200ms;
+        }
+        .nav > li:hover .sub li:nth-child(3){
+            transition-delay: 400ms;
+        }
+        .nav > li:hover .sub li:nth-child(4){
+            transition-delay: 600ms;
+        }
+        .nav > li:hover .sub li:nth-child(5){
+            transition-delay: 800ms;
+        }
+
+        .sub li:nth-child(1){
+            transition-delay: 800ms;
+        }
+        .sub li:nth-child(2){
+            transition-delay: 600ms;
+        }
+        .sub li:nth-child(3){
+            transition-delay: 400ms;
+        }
+        .sub li:nth-child(4){
+            transition-delay: 200ms;
+        }
+        .sub li:nth-child(5){
+            transition-delay: 0ms;
+        }
+
+
+        /* slide */
+        .slide,.slide1{
+            width: 400px;
+            height: 200px;
+            margin: 300px auto 40px;
+            border: 1px solid #ccc;
+            overflow: hidden;
+        }
+        .slide-box{
+            width: 2400px;
+            animation: slideMove 10s 0ms linear infinite normal; /*(重点)*/
+            background: #000;
+        }
+        .slide-box li,.slide1-box li{
+            list-style: none;
+            width: 400px;
+            height: 200px;
+            float:left;
+            text-align: center;
+            line-height: 200px;
+            color: #fff;
+            font-size: 40px;
+        }
+        .slide-box:hover,
+        .slide1-box:hover{
+            animation-play-state: paused;
+        }
+        .slide-box:hover li,
+        .slide1-box:hover li{
+            opacity: .5;
+        }
+        .slide-box li:hover,
+        .slide1-box li:hover{
+            opacity: 1;
+        }
+        @keyframes slideMove {
+            from{ margin-left: 0;}
+            to{margin-left: -2000px;}
+        }
+
+        /*slide1*/
+        .slide1{
+            margin: 0 auto 40px;
+        }
+        .slide1-box{
+            width: 2400px;
+            animation: slideMove-two 12s 0ms linear infinite normal;
+            background: #000;
+        }
+        @keyframes slideMove-two {
+            0%{transform: translateX(0);}
+            15%{transform: translateX(0);}
+            /*一次运动*/
+            20%{transform: translateX(-400px);}
+            35%{transform: translateX(-400px);}
+            /*二次运动*/
+            40%{transform: translateX(-800px);}
+            55%{transform: translateX(-800px);}
+            /*三次运动*/
+            60%{transform: translateX(-1200px);}
+            75%{transform: translateX(-1200px);}
+            /*四次运动*/
+            80%{transform: translateX(-1600px);}
+            95%{transform: translateX(-1600px);}
+            /*五次运动*/
+            100%{transform: translateX(-2000px);}
+        }
+
+        /*3d box*/
+        .box-3d{
+            width: 200px;
+            height: 200px;
+            margin: 200px auto;
+            /*border: 1px solid #2b2b2b;*/
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotateBox 10s 0ms linear infinite normal;
+        }
+        .box-3d li{
+            position: absolute;
+            top:0;
+            left:0;
+            list-style: none;
+            width: 200px;
+            height: 200px;
+            text-align: center;
+            line-height: 200px;
+            font-size: 40px;
+            opacity: .5;
+        }
+        .box-3d li:nth-child(1){
+            transform: rotateX(90deg) translateZ(100px);
+        }
+        .box-3d li:nth-child(2){
+            transform: rotateX(180deg) translateZ(100px);
+        }
+        .box-3d li:nth-child(3){
+            transform: rotateX(270deg) translateZ(100px);
+        }
+        .box-3d li:nth-child(4){
+            transform: rotateX(360deg) translateZ(100px);
+        }
+        .box-3d li:nth-child(5){
+            transform: translateX(-100px) rotateY(-90deg);
+        }
+        .box-3d li:nth-child(6){
+            transform: translateX(100px) rotateY(90deg);
+        }
+        @keyframes rotateBox {
+            from{transform: rotateX(0) rotateY(0);}
+            to{transform: rotateX(360deg) rotateY(360deg);}
+        }
+
+        /* photo */
+        .photo{
+            width: 200px;
+            height: 200px;
+            margin: 300px auto;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateX(-10deg);
+            animation: rotatePhoto 6s 0ms linear infinite normal;
+        }
+        .photo li{
+            list-style-type: none;
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            top:0;
+            left: 0;
+            text-align: center;
+            line-height: 200px;
+            font-size: 40px;
+        }
+        .photo:hover{
+            animation-play-state: paused;
+        }
+        .photo li:hover{
+            opacity: 1;
+        }
+        .photo li:nth-child(1){
+            transform: rotateY(60deg) translateZ(200px);
+        }
+        .photo li:nth-child(2){
+            transform: rotateY(120deg) translateZ(200px);
+        }
+        .photo li:nth-child(3){
+            transform: rotateY(180deg) translateZ(200px);
+        }
+        .photo li:nth-child(4){
+            transform: rotateY(240deg) translateZ(200px);
+        }
+        .photo li:nth-child(5){
+            transform: rotateY(300deg) translateZ(200px);
+        }
+        .photo li:nth-child(6){
+            transform: rotateY(360deg) translateZ(200px);
+        }
+        
+        @keyframes rotatePhoto {
+            from{ transform: rotateX(-10deg) rotateY(0deg )}
+            to{ transform: rotateX(-10deg) rotateY(360deg)}
+        }
+    </style>
+</head>
+<body>
+    <div class="move">
+        <ul>
+            <li style="background: #7f7f7f">1</li>
+            <li style="background: #8c64b4">2</li>
+            <li style="background: #0084e3">3</li>
+            <li style="background: #96e6a1">4</li>
+            <li style="background: #ff9900">5</li>
+            <li style="background: #FF5655">6</li>
+        </ul>
+    </div>
+
+    <ul class="nav">
+        <li>
+            标题一
+            <ul class="sub">
+                <li>二级标题</li>
+                <li>二级标题</li>
+                <li>二级标题</li>
+                <li>二级标题</li>
+                <li>二级标题</li>
+            </ul>
+        </li>
+        <li>
+            标题二
+            <ul class="sub">
+                <li>二级标题</li>
+                <li>二级标题</li>
+                <li>二级标题</li>
+                <li>二级标题</li>
+                <li>二级标题</li>
+            </ul>
+        </li>
+        <li>
+            标题三
+            <ul class="sub">
+                <li>二级标题</li>
+                <li>二级标题</li>
+                <li>二级标题</li>
+                <li>二级标题</li>
+                <li>二级标题</li>
+            </ul>
+        </li>
+    </ul>
+
+    <div class="slide">
+        <ul class="slide-box">
+            <li style="background: #7f7f7f">1</li>
+            <li style="background: #8c64b4">2</li>
+            <li style="background: #0084e3">3</li>
+            <li style="background: #96e6a1">4</li>
+            <li style="background: #ff9900">5</li>
+            <li style="background: #7f7f7f">1</li>
+        </ul>
+    </div>
+
+    <div class="slide1">
+        <ul class="slide1-box">
+            <li style="background: #7f7f7f">1</li>
+            <li style="background: #8c64b4">2</li>
+            <li style="background: #0084e3">3</li>
+            <li style="background: #96e6a1">4</li>
+            <li style="background: #ff9900">5</li>
+            <li style="background: #7f7f7f">1</li>
+        </ul>
+    </div>
+
+    <ul class="box-3d">
+        <li style="background: #7f7f7f">1</li>
+        <li style="background: #8c64b4">2</li>
+        <li style="background: #0084e3">3</li>
+        <li style="background: #96e6a1">4</li>
+        <li style="background: #ff9900">5</li>
+        <li style="background: #FF5655">6</li>
+    </ul>
+
+
+    <ul class="photo">
+        <li style="background: #7f7f7f">1</li>
+        <li style="background: #8c64b4">2</li>
+        <li style="background: #0084e3">3</li>
+        <li style="background: #96e6a1">4</li>
+        <li style="background: #ff9900">5</li>
+        <li style="background: #FF5655">6</li>
+    </ul>
+</body>
+</html>

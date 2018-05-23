@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        a{
+            text-decoration: none;
+        }
+        .clearfix::after{
+            content: '';
+            display: block;
+            height: 0;
+            visibility: hidden;
+            clear: both;
+        }
+        .clearfix{
+            *zoom: 1;
+        }
+        .container{
+            width: 1100px;
+            margin: 0 auto;
+        }
+        .news{
+            background: #f8fafc!important;
+        }
+        .news-wrap{
+            padding: 40px 20px;
+        }
+        .news-item{
+            list-style: none;
+            width: 250px;
+            float: left;
+            background: #fff;
+            margin: 0 20px 30px 0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .news-item:nth-child(4n){
+            margin-right: 0;
+        }
+        .news-item:hover{
+            margin-top: -5px;
+            -webkit-box-shadow: 0 8px 16px 0 rgba(7,17,27,.1);
+            -moz-box-shadow: 0 8px 16px 0 rgba(7,17,27,.1);
+            box-shadow: 0 8px 16px 0 rgba(7,17,27,.1);
+        }
+        .news-item .news-txt{
+            padding: 10px;
+        }
+        .news-item .news-pic{
+            height: 175px;
+            overflow: hidden;
+            background-size: cover;
+        }
+        .news-item .news-pic img{
+            width: 100%;
+            vertical-align: middle;
+        }
+        .news-item .news-title{
+            color: #333;
+            font-size: 14px;
+            line-height: 22px;
+            margin-bottom: 16px;
+            min-height: 44px;
+        }
+        .news-item .news-time{
+            display: block;
+            color: #c8c8c8;
+            font-size: 12px;
+            line-height: 20px;
+            text-align: right;
+        }
+        .news-item .news-desc{
+            font-size: 12px;
+            color: #2b2b2b;
+            line-height: 24px;
+        }
+        .load-news{
+            display: block;
+            width: 140px;
+            height: 35px;
+            margin: 20px auto;
+            color:#fff;
+            font-size: 14px;
+            line-height: 35px;
+            text-align: center;
+            border-radius: 4px;
+            background: skyblue;
+        }
+    </style>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+<div class="news">
+    <div class="container">
+        <div class="news-wrap">
+            <ul class="news-list clearfix">
+            </ul>
+            <a class="load-news" href="javascritp:;">加载更多</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    var key = 'f5cf384cc57d7b8b1832b8da42ffca75';
+    var num = 10;
+    loadNews();
+
+    $('.load-news').on('click',function(){
+        num += 10;
+        loadNews();
+    });
+
+    function loadNews() {
+        $.ajax({
+            url:'http://api.tianapi.com/mobile/',
+            type: 'get',
+            data: {
+                key: key,
+                num: num
+            },
+            success: function (data) {
+                var data = data.newslist;
+                $.each(data,function(index,elemet){
+                    var temp = $('<li class="news-item"><a href="'+ elemet.url +'"><div class="news-pic" style="background-image: url('+elemet.picUrl+')"></div><div class="news-txt"><h2 class="news-title">'+ elemet.title +'</h2><span class="news-time">'+ elemet.ctime +'</span><p class="news-desc">'+ elemet.description +'</p></div></a></li>');
+
+                    $('.news-list').append(temp);
+                })
+            },
+            error: function(data){
+                console.log(data.msg);
+            }
+        })
+    }
+    
+    // 事件委托
+    $(".xx").delegate('ul', 'click', function () {
+         
+    })
+    // 实时监听 文本域
+    $('body').delegate('textarea', 'input propertychange',function () {
+        
+    })
+</script>
+</body>
+</html>
