@@ -105,17 +105,17 @@ $(function () {
         // 监听歌曲的移入移出事件
         $('.content-list').delegate('.list-music', 'mouseenter', function () {
             // 显示子菜单
-            $(this).find('.list-menu').css({visibility:"visible"});
-            $(this).find('.list-time a').css({visibility:"visible"});
+            $(this).find('.list-menu').show();
+            $(this).find('.list-time a').show();
             // 隐藏时长
-            $(this).find('.list-time span').css({visibility:"hidden"});
+            $(this).find('.list-time span').hide();
         });
         $('.content-list').delegate('.list-music', 'mouseleave', function () {
             // 隐藏子菜单
-            $(this).find('.list-menu').css({visibility:"hidden"});
-            $(this).find('.list-time a').css({visibility:"hidden"});
+            $(this).find('.list-menu').hide();
+            $(this).find('.list-time a').hide();
             // 显示时长
-            $(this).find('.list-time span').css({visibility:"visible"});
+            $(this).find('.list-time span').show();
         });
 
         // 监听复选框选中
