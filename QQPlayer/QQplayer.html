@@ -9,106 +9,107 @@
     <script src="js/lib/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="js/player.js"></script>
     <script src="js/progress.js"></script>
+    <script src="js/lyric.js"></script>
     <script src="js/index.js"></script>
 </head>
 <body>
-    <div class="header">
-        <div class="logo fl"><a href="javascript:;"></a></div>
-        <ul class="register fr">
-            <li><a href="javascript:;">登录</a></li>
-            <li><a href="javascript:;">注册</a></li>
-        </ul>
-    </div>
-    <div class="content">
-        <div class="layout-w clearfix">
-            <div class="main-left fl">
-                <div class="content-toolbar">
-                    <a href="javascript:;"><i></i>收藏</a>
-                    <a href="javascript:;"><i></i>添加到</a>
-                    <a href="javascript:;"><i></i>下载</a>
-                    <a href="javascript:;"><i></i>删除</a>
-                    <a href="javascript:;"><i></i>清空列表</a>
-                </div>
-                <div class="content-list" data-mcs-theme="minimal-dark">
-                    <ul>
-                        <li class="list-title">
-                            <div class="list-check"><i></i></div>
-                            <div class="list-number"></div>
-                            <div class="list-name">歌曲</div>
-                            <div class="list-singer">歌手</div>
-                            <div class="list-time">时长</div>
-                        </li>
-                        <!--<li class="list-music">-->
-                            <!--<div class="list-check"><i></i></div>-->
-                            <!--<div class="list-number">1</div>-->
-                            <!--<div class="list-name">歌曲歌曲歌曲-->
-                                <!--<div class="list-menu">-->
-                                    <!--<a class="list-menu-play" href="javascript:;" title="播放"></a>-->
-                                    <!--<a class="list-menu-add" href="javascript:;" title="添加"></a>-->
-                                    <!--<a class="list-menu-down" href="javascript:;" title="下载"></a>-->
-                                    <!--<a class="list-menu-share" href="javascript:;" title="分享"></a>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                            <!--<div class="list-singer"><a href="javascript:;">歌手</a></div>-->
-                            <!--<div class="list-time">-->
-                                <!--<span>04:47</span>-->
-                                <!--<a class="list-music-del" href="javascript:;"></a>-->
-                            <!--</div>-->
-                        <!--</li>-->
-                    </ul>
-                </div>
+<div class="header">
+    <div class="logo fl"><a href="javascript:;"></a></div>
+    <ul class="register fr">
+        <li><a href="javascript:;">登录</a></li>
+        <li><a href="javascript:;">注册</a></li>
+    </ul>
+</div>
+<div class="content">
+    <div class="layout-w clearfix">
+        <div class="main-left fl">
+            <div class="content-toolbar">
+                <a href="javascript:;"><i></i>收藏</a>
+                <a href="javascript:;"><i></i>添加到</a>
+                <a href="javascript:;"><i></i>下载</a>
+                <a href="javascript:;"><i></i>删除</a>
+                <a href="javascript:;"><i></i>清空列表</a>
             </div>
-            <div class="main-right fr">
-                <div class="song-info">
-                    <a class="song-info-pic" href="javascript:;">
-                        <img src="images/angang.jpg" alt="暗杠">
-                    </a>
-                    <div class="song-info-name">歌曲名：<a href="javascript:;">暗杠</a></div>
-                    <div class="song-info-singer">歌手名：<a href="javascript:;">狂草</a></div>
-                    <div class="song-info-ablum">专辑名：<a href="javascript:;">狂草</a></div>
-                </div>
-               <div class="lyric-warp">
-                   <ul class="song-lyric">
-                       <li class="on">第一条歌词</li>
-                       <li>第二条歌词</li>
-                   </ul>
-               </div>
+            <div class="content-list" data-mcs-theme="minimal-dark">
+                <ul>
+                    <li class="list-title">
+                        <div class="list-check"><i></i></div>
+                        <div class="list-number"></div>
+                        <div class="list-name">歌曲</div>
+                        <div class="list-singer">歌手</div>
+                        <div class="list-time">时长</div>
+                    </li>
+                    <!--<li class="list-music">-->
+                    <!--<div class="list-check"><i></i></div>-->
+                    <!--<div class="list-number">1</div>-->
+                    <!--<div class="list-name">歌曲歌曲歌曲-->
+                    <!--<div class="list-menu">-->
+                    <!--<a class="list-menu-play" href="javascript:;" title="播放"></a>-->
+                    <!--<a class="list-menu-add" href="javascript:;" title="添加"></a>-->
+                    <!--<a class="list-menu-down" href="javascript:;" title="下载"></a>-->
+                    <!--<a class="list-menu-share" href="javascript:;" title="分享"></a>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="list-singer"><a href="javascript:;">歌手</a></div>-->
+                    <!--<div class="list-time">-->
+                    <!--<span>04:47</span>-->
+                    <!--<a class="list-music-del" href="javascript:;"></a>-->
+                    <!--</div>-->
+                    <!--</li>-->
+                </ul>
+            </div>
+        </div>
+        <div class="main-right fr">
+            <div class="song-info">
+                <a class="song-info-pic" href="javascript:;">
+                    <img src="images/angang.jpg" alt="暗杠">
+                </a>
+                <div class="song-info-name">歌曲名：<a href="javascript:;">暗杠</a></div>
+                <div class="song-info-singer">歌手名：<a href="javascript:;">狂草</a></div>
+                <div class="song-info-ablum">专辑名：<a href="javascript:;">狂草</a></div>
+            </div>
+            <div class="lyric-warp">
+                <ul class="song-lyric">
+                    <li class="on">第一条歌词</li>
+                    <li>第二条歌词</li>
+                </ul>
             </div>
         </div>
     </div>
-    <div class="footer">
-        <div class="layout-w">
-            <a class="music-pre" href="javascript:;"></a>
-            <a class="music-play" href="javascript:;"></a>
-            <a class="music-next" href="javascript:;"></a>
-            <div class="music-progress-info">
-                <div class="music-progress-top">
-                    <span class="music-progress-title fl">狂草 - 暗杠</span>
-                    <span class="music-progress-time fr">00:00/04:30</span>
-                </div>
-                <div class="music-progress-bar">
-                    <div class="music-progress-line">
-                        <div class="music-progress-dot"></div>
-                    </div>
+</div>
+<div class="footer">
+    <div class="layout-w">
+        <a class="music-pre" href="javascript:;"></a>
+        <a class="music-play" href="javascript:;"></a>
+        <a class="music-next" href="javascript:;"></a>
+        <div class="music-progress-info">
+            <div class="music-progress-top">
+                <span class="music-progress-title fl">狂草 - 暗杠</span>
+                <span class="music-progress-time fr">00:00/04:30</span>
+            </div>
+            <div class="music-progress-bar">
+                <div class="music-progress-line">
+                    <div class="music-progress-dot"></div>
                 </div>
             </div>
-            <a class="music-mode" href="javascript:;"></a>
-            <a class="music-fav" href="javascript:;"></a>
-            <a class="music-down" href="javascript:;"></a>
-            <a class="music-comment" href="javascript:;"></a>
-            <a class="music-only" href="javascript:;"></a>
-            <div class="music-voice-info">
-                <a class="music-voice-icon" href="javascript:;"></a>
-                <div class="music-voice-bar">
-                    <div class="music-voice-line">
-                        <div class="music-voice-dot"></div>
-                    </div>
+        </div>
+        <a class="music-mode" href="javascript:;"></a>
+        <a class="music-fav" href="javascript:;"></a>
+        <a class="music-down" href="javascript:;"></a>
+        <a class="music-comment" href="javascript:;"></a>
+        <a class="music-only" href="javascript:;"></a>
+        <div class="music-voice-info">
+            <a class="music-voice-icon" href="javascript:;"></a>
+            <div class="music-voice-bar">
+                <div class="music-voice-line">
+                    <div class="music-voice-dot"></div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="mask-pic"></div>
-    <div class="mask"></div>
-    <audio src=""></audio>
+</div>
+<div class="mask-pic"></div>
+<div class="mask"></div>
+<audio src=""></audio>
 </body>
 </html>

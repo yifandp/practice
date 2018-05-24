@@ -13,7 +13,7 @@
         playMusic: function (index,music) {
             // 如果重复点击当前的音乐
             if(this.currentIndex == index){
-                if(this.audio.pause){
+                if(this.audio.paused){
                     this.audio.play();
                 }else{
                     this.audio.pause();
@@ -31,12 +31,14 @@
             if(index < 0){
                 index = this.musicList.length - 1;
             }
+            return index;
         },
         nextIndex: function () {
             var index = this.currentIndex + 1;
             if(index > this.musicList.length - 1){
                 index = 0;
             }
+            return index;
         },
         // 删除对应的音乐
         changeMusic: function (index) {
@@ -52,9 +54,9 @@
             this.$audio.on('timeupdate', function () {
                 var duration = $this.audio.duration;;
                 var currentTime = $this.audio.currentTime;
-                var timeTemp = formatDate(currentTime,duration);
+                var timeTemp = $this.formatDate(currentTime,duration);
                 callBack(duration,currentTime,timeTemp);
-            })
+            });
         },
         // 定义一个格式化时间的方法
         formatDate: function (currentTime,duration) {

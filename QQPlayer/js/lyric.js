@@ -15,7 +15,7 @@
             var $this = this;
             $.ajax({
                 url: $this.path,
-                dataType: 'txt',
+                dataType: 'text',
                 success: function (data) {
                     $this.parseLyric(data);
                     callBack();
@@ -36,11 +36,10 @@
 
             $.each(array,function (index,ele) {
                 // 处理歌词
-                var lrc = ele.split(']');
-                if(lrc.length == 1){
-                    return true;
-                }
-                $this.lyrics.push(lrc[1]);
+
+                var lrc = ele.split(']')[1];
+                if(lrc.length == 1) return true;
+                $this.lyrics.push(lrc);
 
                 // 处理时间
                 var res = timeReg.exec(ele);
@@ -55,13 +54,12 @@
                 var sec = parseFloat(res2[1]);
                 var time = parseFloat(Number(min + sec).toFixed(2));
                 $this.times.push(time);
-
             })
         },
         index: -1,
         currentIndex: function (currentTime) {
             if(currentTime >= this.times[0]){
-                index++;
+                this.index++;
                 this.times.shift(); // 删除数组最前面的一个
             }
             return this.index;
@@ -78,4 +76,4 @@
 
     Lyric.prototype.init.prototype = Lyric.prototype;
     window.Lyric = Lyric;
-})(window)
+})(window);

@@ -25,7 +25,7 @@
                 $this.$progressDot.css('left', (eventLeft - normalLeft) - 5);
 
                 //设置音乐的播放时长（跳转）
-                var vaule = (eventLeft - normalLeft) / $(this).width();
+                var value = (eventLeft - normalLeft) / $(this).width();
                 callBack(value);
             })
         },
@@ -55,7 +55,7 @@
                 $(document).off('mousemove');
                 $this.isMove = false;
                 //设置音乐的播放时长（跳转）
-                var vaule = (eventLeft - normalLeft) / $this.$progressBar.width();
+                var value = (eventLeft - normalLeft) / $this.$progressBar.width();
                 callBack(value);
             })
         },

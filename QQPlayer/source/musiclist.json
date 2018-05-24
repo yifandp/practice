@@ -1,0 +1,47 @@
+[
+  {
+    "title": "狂草",
+    "singer": "暗杠",
+    "album": "狂草",
+    "time": "04:07",
+    "link_url": "./source/kuangcao.mp3",
+    "pictrue": "./source/angang.jpg",
+    "link_lrc": "./source/kuangcao.txt"
+  },
+  {
+    "title": "春风十里",
+    "singer": "鹿先森乐队",
+    "album": "所有的酒，都不如你",
+    "time": "06:16",
+    "link_url": "./source/chunfengshili.m4a",
+    "pictrue": "./source/chunfengshili.jpg",
+    "link_lrc": "./source/chunfengshili.txt"
+  },
+  {
+    "title": "第三十八年夏至",
+    "singer": "河图",
+    "album": "风起天阑",
+    "time": "04:23",
+    "link_url": "./source/disanshibanianxiazhi.m4a",
+    "pictrue": "./source/disanshibanianxiazhi.jpg",
+    "link_lrc": "./source/disanshibanianxiazhi.txt"
+  },
+  {
+    "title": "离人愁",
+    "singer": "李袁杰",
+    "album": "离人愁",
+    "time": "04:08",
+    "link_url": "./source/lirenchou.m4a",
+    "pictrue": "./source/lirenchou.jpg",
+    "link_lrc": "./source/lirenchou.txt"
+  },
+  {
+    "title": "明月天涯",
+    "singer": "五音JM",
+    "album": "聆音",
+    "time": "04:02",
+    "link_url": "./source/mingyuetianya.m4a",
+    "pictrue": "./source/mingyuetianya.jpg",
+    "link_lrc": "./source/mingyuetianya.txt"
+  }
+]
