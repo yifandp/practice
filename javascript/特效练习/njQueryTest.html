@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/njQuery.js"></script>
+    <script>
+        njQuery(function () {
+            var njquery = new njQuery(' <div><p>1</p></div><div><p>2</p></div>');
+            console.log(njquery);
+
+            console.log(new njQuery('.list-item'));
+        })
+    </script>
+</head>
+<body>
+<ul class="list-box">
+    <li class="list-item">1</li>
+    <li class="list-item">2</li>
+    <li class="list-item">3</li>
+    <li class="list-item">4</li>
+</ul>
+
+</body>
+</html>
